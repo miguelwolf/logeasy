@@ -3,8 +3,11 @@ package br.com.miguelwolf.logeasy;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -19,6 +22,40 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     private TextView mTextMessage;
     private GoogleMap mMap;
 
+    private InicioFragment inicioFragment;
+    private PesquisarFragment pesquisarFragment;
+    private TarefasFragment tarefasFragment;
+    private AgregadosFragment agregadosFragment;
+    private OpcoesFragment opcoesFragment;
+
+    private BottomNavigationView navigation;
+
+    private FrameLayout mMainFrame;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        mMainFrame = (FrameLayout) findViewById(R.id.main_frame);
+
+//        mTextMessage = (TextView) findViewById(R.id.message);
+        navigation = (BottomNavigationView) findViewById(R.id.navigation);
+        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+
+        inicioFragment = new InicioFragment();
+        pesquisarFragment = new PesquisarFragment();
+        tarefasFragment = new TarefasFragment();
+        agregadosFragment = new AgregadosFragment();
+        opcoesFragment = new OpcoesFragment();
+        setFragment(inicioFragment);
+
+//        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
+//        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+//                .findFragmentById(R.id.map);
+//        mapFragment.getMapAsync(this);
+    }
+
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
@@ -26,19 +63,28 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
-                    mTextMessage.setText(R.string.title_home);
+//                    mTextMessage.setText(R.string.title_home);
+                    setFragment(inicioFragment);
                     return true;
+
                 case R.id.navigation_search:
-                    mTextMessage.setText(R.string.title_search);
+//                    mTextMessage.setText(R.string.title_search);
+                    setFragment(pesquisarFragment);
                     return true;
+
                 case R.id.navigation_task:
-                    mTextMessage.setText(R.string.title_task);
+//                    mTextMessage.setText(R.string.title_task);
+                    setFragment(tarefasFragment);
                     return true;
+
                 case R.id.navigation_agregados:
-                    mTextMessage.setText(R.string.title_agregados);
+//                    mTextMessage.setText(R.string.title_agregados);
+                    setFragment(agregadosFragment);
                     return true;
+
                 case R.id.navigation_options:
-                    mTextMessage.setText(R.string.title_options);
+//                    mTextMessage.setText(R.string.title_options);
+                    setFragment(opcoesFragment);
                     return true;
             }
             return false;
@@ -46,20 +92,12 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     };
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+    private void setFragment(Fragment fragment) {
 
-        mTextMessage = (TextView) findViewById(R.id.message);
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
-        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.main_frame, fragment);
+        fragmentTransaction.commit();
 
-
-//        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-//        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-//                .findFragmentById(R.id.map);
-//        mapFragment.getMapAsync(this);
     }
 
     /**
