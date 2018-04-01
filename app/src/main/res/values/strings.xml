@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">LogEasy</string>
+    <string name="title_home">Início</string>
+    <string name="title_search">Procurar</string>
+    <string name="title_task">Tarefas</string>
+    <string name="title_agregados">Agregados</string>
+    <string name="title_options">Opções</string>
+    <string name="title_activity_maps">Map</string>
+</resources>
