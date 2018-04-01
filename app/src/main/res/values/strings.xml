@@ -6,4 +6,27 @@
     <string name="title_agregados">Agregados</string>
     <string name="title_options">Opções</string>
     <string name="title_activity_maps">Map</string>
+    <string name="solicitou_nova_entrega">solicitou nova entrega</string>
+    <string name="recebeu_entrega">recebeu entrega</string>
+    <string name="saiu_para_entrega">saiu para entrega</string>
+    <string name="teve_carga_saqueada">teve carga saqueada</string>
+    <string name="concluiu_entrega">concluiu entrega</string>
+    <string name="adicionou_nova_entrega">adicionou uma nova entrega para você</string>
+    <string name="enviando_pedido">já está enviando o seu pedido</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_login">Entrar</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Senha (Opcional)</string>
+    <string name="action_sign_in">Entrar ou Registrar</string>
+    <string name="action_sign_in_short">Entrar</string>
+    <string name="error_invalid_email">E-mail inválido</string>
+    <string name="error_invalid_password">Senha curta</string>
+    <string name="error_incorrect_password">Senha incorreta</string>
+    <string name="error_field_required">Campo obrigatório</string>
+    <string name="permission_rationale">"O aplicativo precisa da permissão para fornecer dicas de e-mail."
+    </string>
 </resources>
