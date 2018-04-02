@@ -1,13 +1,67 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="br.com.miguelwolf.logeasy.OpcoesFragment">
+    tools:context="br.com.miguelwolf.logeasy.OpcoesFragment"
+    android:layout_margin="32dp">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
+        android:id="@+id/btnEditarLogin"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Opções" />
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:layout_alignParentTop="true"
+        android:gravity="left"
+        android:textColorHint="@color/grafite_claro"
+        android:textColor="@color/grafite"
+        android:text="@string/editar_login"
+        android:textSize="16sp"/>
 
-</FrameLayout>
+    <TextView
+        android:id="@+id/btnAddAdmin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:padding="8dp"
+        android:layout_below="@id/btnEditarLogin"
+        android:gravity="left"
+        android:textColorHint="@color/grafite_claro"
+        android:textColor="@color/grafite"
+        android:text="@string/add_admin"
+        android:textSize="16sp"/>
+
+    <TextView
+        android:id="@+id/tvPersonalizacao"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btnAddAdmin"
+        android:layout_marginTop="16dp"
+        android:padding="8dp"
+        android:text="@string/personalizacao"
+        android:textSize="16sp"
+        android:textColor="@color/colorPrimary"/>
+
+    <Switch
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:padding="8dp"
+        android:layout_below="@id/tvPersonalizacao"
+        android:text="@string/noite"
+        android:textSize="14sp"
+        android:textColor="@color/grafite"
+        />
+
+    <TextView
+        android:id="@+id/btnSair"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        android:textColorHint="@color/colorPrimaryLight"
+        android:textColor="@color/colorPrimaryDark"
+        android:text="@string/sair"
+        android:textSize="16sp"/>
+
+</RelativeLayout>

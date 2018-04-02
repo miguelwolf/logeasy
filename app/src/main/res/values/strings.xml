@@ -6,6 +6,13 @@
     <string name="title_agregados">Agregados</string>
     <string name="title_options">Opções</string>
     <string name="title_activity_maps">Map</string>
+
+    <string name="editar_login">Editar login</string>
+    <string name="add_admin">Adicionar administrador</string>
+    <string name="personalizacao">Personalização</string>
+    <string name="noite">Noite</string>
+    <string name="sair">Sair</string>
+
     <string name="solicitou_nova_entrega">solicitou nova entrega</string>
     <string name="recebeu_entrega">recebeu entrega</string>
     <string name="saiu_para_entrega">saiu para entrega</string>
