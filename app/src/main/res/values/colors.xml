@@ -10,4 +10,6 @@
     <color name="preto_transparente">#80000000</color>
     <color name="background_light">#fffafafa</color>
     <color name="background_dark">#303030</color>
+    <color name="border_color">#bdbdbd</color>
+
 </resources>

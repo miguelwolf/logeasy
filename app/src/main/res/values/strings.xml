@@ -36,4 +36,7 @@
     <string name="error_field_required">Campo obrigatório</string>
     <string name="permission_rationale">"O aplicativo precisa da permissão para fornecer dicas de e-mail."
     </string>
+
+    <!-- Perfil -->
+    <string name="editar_perfil">Editar Perfil</string>
 </resources>
