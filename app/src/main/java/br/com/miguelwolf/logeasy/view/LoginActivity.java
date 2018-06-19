@@ -1,4 +1,4 @@
-package br.com.miguelwolf.logeasy;
+package br.com.miguelwolf.logeasy.view;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -32,6 +32,8 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import br.com.miguelwolf.logeasy.R;
 
 import static android.Manifest.permission.READ_CONTACTS;
 

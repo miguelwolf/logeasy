@@ -1,4 +1,4 @@
-package br.com.miguelwolf.logeasy;
+package br.com.miguelwolf.logeasy.view;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -10,12 +10,10 @@ import android.view.MenuItem;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
-import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
+
+import br.com.miguelwolf.logeasy.R;
 
 public class MainActivity extends AppCompatActivity implements OnMapReadyCallback{
 
@@ -48,7 +46,8 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         tarefasFragment = new TarefasFragment();
         agregadosFragment = new AgregadosFragment();
         opcoesFragment = new OpcoesFragment();
-        setFragment(inicioFragment);
+//        setFragment(inicioFragment);
+        setFragment(new PerfilFragment());
 
 //        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
 //        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
