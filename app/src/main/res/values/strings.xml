@@ -39,4 +39,15 @@
 
     <!-- Perfil -->
     <string name="editar_perfil">Editar Perfil</string>
+    <string name="CPF_CNPJ">CPF_CNPJ</string>
+    <string name="endereco">Endereço</string>
+    <string name="numero">Número</string>
+    <string name="bairro">Bairro</string>
+    <string name="cidade">Cidade</string>
+    <string name="logradouro">Logradouro</string>
+    <string name="complemento">Complemento</string>
+    <string name="CEP">CEP</string>
+    <string name="descricao">Descrição</string>
+
+
 </resources>

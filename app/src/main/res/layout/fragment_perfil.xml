@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".view.PerfilFragment"
-    android:layout_margin="16dp">
+    android:layout_margin="16dp"
+    tools:context=".view.PerfilFragment">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -16,23 +16,27 @@
             android:id="@+id/perfil_iv_foto"
             android:layout_width="85dp"
             android:layout_height="85dp"
-            android:layout_marginRight="16dp"/>
+            android:layout_marginRight="16dp"
+            android:layout_marginLeft="10dp"/>
 
         <!--<de.hdodenhof.circleimageview.CircleImageView-->
-            <!--android:id="@+id/perfil_civ_foto"-->
-            <!--android:layout_width="90dp"-->
-            <!--android:layout_height="85dp"-->
-            <!--app:civ_border_width="0.5dp"-->
-            <!--app:civ_border_color="@color/border_color"-->
-            <!--android:src="@drawable/goku"-->
-            <!--android:layout_marginRight="16dp"/>-->
+        <!--android:id="@+id/perfil_civ_foto"-->
+        <!--android:layout_width="90dp"-->
+        <!--android:layout_height="85dp"-->
+        <!--app:civ_border_width="0.5dp"-->
+        <!--app:civ_border_color="@color/border_color"-->
+        <!--android:src="@drawable/goku"-->
+        <!--android:layout_marginRight="16dp"/>-->
 
         <LinearLayout
+            android:id="@+id/perfil_ll_cabecalho"
             android:layout_width="match_parent"
             android:layout_height="85dp"
+            android:layout_marginBottom="16dp"
+            android:layout_marginRight="10dp"
+            android:layout_toEndOf="@id/perfil_iv_foto"
             android:gravity="center"
-            android:orientation="vertical"
-            android:layout_toRightOf="@id/perfil_iv_foto">
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/perfil_tv_nome"
@@ -40,23 +44,192 @@
                 android:layout_height="wrap_content"
                 android:text="Miguel Wolf"
                 android:textSize="16sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/perfil_tv_identificacao"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Pizzaria 3 sabores"
-                android:textSize="16sp"/>
+                android:textSize="16sp" />
 
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:backgroundTint="@color/colorPrimary"
                 android:text="@string/editar_perfil"
-                android:textColor="@color/background_light"
-                android:backgroundTint="@color/colorPrimary" />
+                android:textColor="@color/background_light" />
 
         </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/perfil_rl_descricao"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/perfil_ll_cabecalho"
+            android:layout_margin="8dp"
+            android:background="@color/branco_transparente"
+            android:padding="10dp">
+
+            <TextView
+                android:id="@+id/perfil_tv_descricao"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Descrição detalhada e escrita pelo usuário, como é feito no instagram ou qualquer outra rede social para dispositivos mobile."/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/perfil_rl_descricao"
+            android:layout_margin="8dp"
+            android:background="@color/branco_transparente"
+            android:padding="10dp">
+
+            <TextView
+                android:id="@+id/CPF_CNPJ"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginEnd="8dp"
+                android:text="@string/CPF_CNPJ"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/perfil_tv_CPFCNPJ"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/CPF_CNPJ"
+                android:text="99.999.999-99" />
+
+            <TextView
+                android:id="@+id/endereco"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/CPF_CNPJ"
+                android:layout_marginBottom="10dp"
+                android:layout_marginEnd="8dp"
+                android:text="@string/endereco"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/perfil_tv_endereco"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/CPF_CNPJ"
+                android:layout_toEndOf="@id/CPF_CNPJ"
+                android:text="Rua X" />
+
+            <TextView
+                android:id="@+id/numero"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/endereco"
+                android:layout_marginBottom="10dp"
+                android:layout_marginEnd="8dp"
+                android:text="@string/numero"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/perfil_tv_numero"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/endereco"
+                android:layout_toEndOf="@id/numero"
+                android:text="123" />
+
+            <TextView
+                android:id="@+id/bairro"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/numero"
+                android:layout_marginBottom="10dp"
+                android:layout_marginEnd="8dp"
+                android:text="@string/bairro"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/perfil_tv_bairro"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/numero"
+                android:layout_toEndOf="@id/bairro"
+                android:text="Bairro X" />
+
+            <TextView
+                android:id="@+id/cidade"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/bairro"
+                android:layout_marginBottom="10dp"
+                android:layout_marginEnd="8dp"
+                android:text="@string/cidade"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/perfil_tv_cidade"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/bairro"
+                android:layout_toEndOf="@id/cidade"
+                android:text="Cidade X" />
+
+            <TextView
+                android:id="@+id/logradouro"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/cidade"
+                android:layout_marginBottom="10dp"
+                android:layout_marginEnd="8dp"
+                android:text="@string/logradouro"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/perfil_tv_logradouro"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/cidade"
+                android:layout_toEndOf="@id/logradouro"
+                android:text="Logradouro X" />
+
+            <TextView
+                android:id="@+id/complemento"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/logradouro"
+                android:layout_marginBottom="10dp"
+                android:layout_marginEnd="8dp"
+                android:text="@string/complemento"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/perfil_tv_complemento"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/logradouro"
+                android:layout_toEndOf="@id/complemento"
+                android:text="Complemento X" />
+
+            <TextView
+                android:id="@+id/cep"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/complemento"
+                android:layout_marginBottom="10dp"
+                android:layout_marginEnd="8dp"
+                android:text="@string/CEP"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/perfil_tv_cep"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/complemento"
+                android:layout_toEndOf="@id/cep"
+                android:text="99.999-999" />
+
+        </RelativeLayout>
 
     </RelativeLayout>
 
