@@ -81,7 +81,7 @@ public class PerfilFragment extends Fragment {
         ivCarro = view.findViewById(R.id.perfil_iv_carro);
 
         Picasso.get().load(R.drawable.perfil).transform(new CircleTransform()).into(ivPerfil);
-        Picasso.get().load(R.drawable.caminhao).transform(new RoundedTransformation(10,10)).into(ivCarro);
+        Picasso.get().load(R.drawable.caminhao).into(ivCarro);
 
         // Inflate the layout for this fragment
         return view;

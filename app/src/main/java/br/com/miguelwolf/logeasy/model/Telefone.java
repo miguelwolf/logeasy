@@ -1,11 +1,12 @@
 package br.com.miguelwolf.logeasy.model;
 
-public class Telefone extends Pessoa{
+public class Telefone {
 
     private int codigo;
     private int ddd;
     private String telefone;
     private String tipo;
+    private Pessoa pessoa;
 
     public Telefone() {
     }
@@ -17,20 +18,10 @@ public class Telefone extends Pessoa{
         this.tipo = tipo;
     }
 
-    public Telefone(int codigo, String nome, String cpfCnpj, String email, boolean ativo, int codigo1, int ddd, String telefone, String tipo) {
-        super(codigo, nome, cpfCnpj, email, ativo);
-        this.codigo = codigo1;
-        this.ddd = ddd;
-        this.telefone = telefone;
-        this.tipo = tipo;
-    }
-
-    @Override
     public int getCodigo() {
         return codigo;
     }
 
-    @Override
     public void setCodigo(int codigo) {
         this.codigo = codigo;
     }
@@ -52,7 +43,7 @@ public class Telefone extends Pessoa{
     }
 
     public String getTipo() {
-        return tipo;
+        return this.tipo;
     }
 
     public void setTipo(String tipo) {
