@@ -106,14 +106,15 @@
                 android:layout_height="match_parent"
                 android:layout_below="@id/perfil_rl_descricao"
                 android:layout_margin="8dp"
-                android:padding="10dp"
                 android:background="@color/branco_transparente">
 
                 <ImageView
                     android:id="@+id/perfil_iv_carro"
-                    android:layout_width="85dp"
-                    android:layout_height="85dp"
-                    android:layout_marginRight="16dp" />
+                    android:layout_width="120dp"
+                    android:layout_height="100dp"
+                    android:layout_marginRight="16dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/caminhao"/>
 
                 <!--<de.hdodenhof.circleimageview.CircleImageView-->
                 <!--android:id="@+id/perfil_civ_foto"-->
@@ -127,8 +128,9 @@
                 <LinearLayout
                     android:id="@+id/perfil_ll_carro_desc"
                     android:layout_width="match_parent"
-                    android:layout_height="85dp"
+                    android:layout_height="100dp"
                     android:layout_toEndOf="@id/perfil_iv_carro"
+                    android:padding="10dp"
                     android:gravity="center"
                     android:orientation="vertical">
 
