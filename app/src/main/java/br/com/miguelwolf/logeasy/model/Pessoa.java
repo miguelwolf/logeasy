@@ -10,6 +10,10 @@ public class Pessoa extends Endereco{
     private int tipo;
     private Carro carro;
 
+    public static final int ADMINISTRADOR = 2;
+    public static final int CAMINHONEIRO = 1;
+    public static final int COMUM = 0;
+
     public Pessoa() {
     }
 

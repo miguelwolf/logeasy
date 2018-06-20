@@ -61,6 +61,7 @@
                     android:textSize="16sp" />
 
                 <Button
+                    android:id="@+id/perfil_btn_editar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/colorPrimary"
@@ -112,7 +113,7 @@
                     android:id="@+id/perfil_iv_carro"
                     android:layout_width="120dp"
                     android:layout_height="100dp"
-                    android:layout_marginRight="16dp"
+                    android:layout_marginRight="8dp"
                     android:scaleType="centerCrop"
                     android:src="@drawable/caminhao"/>
 
@@ -130,7 +131,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
                     android:layout_toEndOf="@id/perfil_iv_carro"
-                    android:padding="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
                     android:gravity="center"
                     android:orientation="vertical">
 
@@ -160,6 +163,7 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/perfil_rl_dados"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/perfil_rl_carro"

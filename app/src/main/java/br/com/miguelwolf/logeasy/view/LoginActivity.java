@@ -4,6 +4,7 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
@@ -34,6 +35,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.miguelwolf.logeasy.R;
+import br.com.miguelwolf.logeasy.Utils.Preferences;
+import br.com.miguelwolf.logeasy.model.Pessoa;
 
 import static android.Manifest.permission.READ_CONTACTS;
 
@@ -192,6 +195,15 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             mAuthTask.execute((Void) null);
 
             Intent i = new Intent(this, MainActivity.class);
+
+            SharedPreferences preferences =
+                    getSharedPreferences(Preferences.PREFERENCIA, MODE_PRIVATE);
+
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.putInt(Preferences.TIPO_PESSOA, Pessoa.CAMINHONEIRO);
+            editor.putInt(Preferences.ID_PESSOA, 0);
+            editor.commit();
+
             startActivity(i);
 
         }

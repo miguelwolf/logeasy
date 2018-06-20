@@ -1,20 +1,26 @@
 package br.com.miguelwolf.logeasy.view;
 
 import android.content.Context;
-import android.media.Image;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
 import com.squareup.picasso.Picasso;
 
+import br.com.miguelwolf.logeasy.DAO.PessoaDAO;
 import br.com.miguelwolf.logeasy.R;
 import br.com.miguelwolf.logeasy.Utils.CircleTransform;
-import br.com.miguelwolf.logeasy.Utils.RoundedTransformation;
+import br.com.miguelwolf.logeasy.Utils.Preferences;
+import br.com.miguelwolf.logeasy.model.Pessoa;
+
+import static android.content.Context.MODE_PRIVATE;
 
 
 /**
@@ -34,9 +40,19 @@ public class PerfilFragment extends Fragment {
     private ImageView ivPerfil;
     private ImageView ivCarro;
 
+    private Button btnEditarPerfil;
+    private Button btnAtribuirPermissao;
+    private Button btnAtribuirCarro;
+
+    private RelativeLayout rlDados;
+    private RelativeLayout rlCarro;
+
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private Pessoa pessoa;
+    private PessoaDAO pessoaDAO;
 
     private OnFragmentInteractionListener mListener;
 
@@ -80,8 +96,64 @@ public class PerfilFragment extends Fragment {
         ivPerfil = view.findViewById(R.id.perfil_iv_foto);
         ivCarro = view.findViewById(R.id.perfil_iv_carro);
 
+        btnEditarPerfil = view.findViewById(R.id.perfil_btn_editar);
+        btnAtribuirCarro = view.findViewById(R.id.perfil_btn_carro);
+        btnAtribuirPermissao = view.findViewById(R.id.perfil_btn_permissoes);
+
+        rlDados = view.findViewById(R.id.perfil_rl_dados);
+        rlCarro = view.findViewById(R.id.perfil_rl_carro);
+
+        pessoa = new Pessoa();
+        pessoaDAO = new PessoaDAO();
+
+        SharedPreferences preferences =
+                getActivity().getSharedPreferences(Preferences.PREFERENCIA, MODE_PRIVATE);
+
+        if (preferences.contains(Preferences.TIPO_PESSOA)) {
+            if (preferences.getInt(Preferences.TIPO_PESSOA,0) == pessoa.getCodigo()) {
+                btnEditarPerfil.setVisibility(View.VISIBLE);
+            } else {
+                btnEditarPerfil.setVisibility(View.GONE);
+            }
+        } else {
+            getActivity().finish();
+        }
+
+        btnAtribuirPermissao.setVisibility(View.GONE);
+        btnAtribuirCarro.setVisibility(View.GONE);
+        rlDados.setVisibility(View.GONE);
+
+
+        if (preferences.contains(Preferences.TIPO_PESSOA)) {
+
+            if (preferences.getInt(Preferences.TIPO_PESSOA,0) == Pessoa.COMUM && preferences.getInt(Preferences.TIPO_PESSOA,0) != pessoa.getCodigo()) {
+
+
+            } else if (preferences.getInt(Preferences.TIPO_PESSOA,0) == Pessoa.COMUM && preferences.getInt(Preferences.TIPO_PESSOA,0) == pessoa.getCodigo()) {
+                rlDados.setVisibility(View.VISIBLE);
+
+            } else if (preferences.getInt(Preferences.TIPO_PESSOA,0) == Pessoa.CAMINHONEIRO && pessoa.getTipo() != Pessoa.ADMINISTRADOR ) {
+                rlDados.setVisibility(View.VISIBLE);
+                Picasso.get().load(R.drawable.caminhao).into(ivCarro);
+
+            } else if (preferences.getInt(Preferences.TIPO_PESSOA,0) == Pessoa.CAMINHONEIRO && pessoa.getTipo() == Pessoa.ADMINISTRADOR ) {
+                Picasso.get().load(R.drawable.caminhao).into(ivCarro);
+
+            } else if (preferences.getInt(Preferences.TIPO_PESSOA,0) == Pessoa.ADMINISTRADOR) {
+                rlDados.setVisibility(View.VISIBLE);
+                btnAtribuirCarro.setVisibility(View.VISIBLE);
+                btnAtribuirPermissao.setVisibility(View.VISIBLE);
+                Picasso.get().load(R.drawable.caminhao).into(ivCarro);
+
+            } else {
+                getActivity().finish();
+            }
+
+        } else {
+            getActivity().finish();
+        }
+
         Picasso.get().load(R.drawable.perfil).transform(new CircleTransform()).into(ivPerfil);
-        Picasso.get().load(R.drawable.caminhao).into(ivCarro);
 
         // Inflate the layout for this fragment
         return view;
