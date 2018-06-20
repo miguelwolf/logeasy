@@ -50,6 +50,13 @@
     <string name="descricao">Descrição</string>
     <string name="permissoes">Atribuir Permissões</string>
     <string name="atribuir_carro">Atribuir Carro</string>
+    <string name="detalhes">Detalhes</string>
+    <string name="title_activity_cadastro">CadastroActivity</string>
 
+    <!--Cadastro-->
+    <string name="nome">Nome</string>
+    <string name="usuario">Usuário</string>
+    <string name="email">E-mail</string>
+    <string name="senha">Senha</string>
 
 </resources>

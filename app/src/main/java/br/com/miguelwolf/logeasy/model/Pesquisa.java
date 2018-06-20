@@ -1,4 +1,4 @@
-package model;
+package br.com.miguelwolf.logeasy.model;
 
 /**
  * Classe utilizada para modelar a lista do fragment de Pesquisa.

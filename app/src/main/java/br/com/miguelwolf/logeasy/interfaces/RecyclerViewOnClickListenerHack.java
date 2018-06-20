@@ -1,4 +1,4 @@
-package interfaces;
+package br.com.miguelwolf.logeasy.interfaces;
 
 import android.view.View;
 

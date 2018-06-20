@@ -14,6 +14,7 @@ import com.squareup.picasso.Picasso;
 
 import br.com.miguelwolf.logeasy.R;
 import br.com.miguelwolf.logeasy.Utils.CircleTransform;
+import br.com.miguelwolf.logeasy.Utils.RoundedTransformation;
 
 
 /**
@@ -31,6 +32,7 @@ public class PerfilFragment extends Fragment {
     private static final String ARG_PARAM2 = "param2";
 
     private ImageView ivPerfil;
+    private ImageView ivCarro;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -76,9 +78,10 @@ public class PerfilFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_perfil, container, false);
 
         ivPerfil = view.findViewById(R.id.perfil_iv_foto);
+        ivCarro = view.findViewById(R.id.perfil_iv_carro);
 
-//        Picasso.get().load(R.drawable.goku).into(ivPerfil);
         Picasso.get().load(R.drawable.perfil).transform(new CircleTransform()).into(ivPerfil);
+        Picasso.get().load(R.drawable.caminhao).transform(new RoundedTransformation(10,10)).into(ivCarro);
 
         // Inflate the layout for this fragment
         return view;
