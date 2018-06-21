@@ -9,17 +9,21 @@ public class Tarefa {
     private boolean ativo;
     private Pessoa requerente;
     private Pessoa requisitado;
+    private String descricao;
 
     public Tarefa() {
     }
 
-    public Tarefa(int codigo, int grauVisibilidade, boolean visualizado, boolean ativo, Pessoa requerente, Pessoa requisitado) {
+
+
+    public Tarefa(int codigo, int grauVisibilidade, boolean visualizado, boolean ativo, Pessoa requerente, Pessoa requisitado, String descricao) {
         this.codigo = codigo;
         this.grauVisibilidade = grauVisibilidade;
         this.visualizado = visualizado;
         this.ativo = ativo;
         this.requerente = requerente;
         this.requisitado = requisitado;
+        this.descricao = descricao;
     }
 
     public int getCodigo() {
@@ -68,5 +72,13 @@ public class Tarefa {
 
     public void setRequisitado(Pessoa requisitado) {
         this.requisitado = requisitado;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
 }

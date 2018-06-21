@@ -7,7 +7,7 @@
     android:layout_marginBottom="8dp">
 
     <ImageView
-        android:id="@+id/item_pesquisa_ivUsuario"
+        android:id="@+id/item_tarefa_ivUsuario"
         android:layout_width="65dp"
         android:layout_height="65dp"
         android:layout_alignParentTop="true"
@@ -19,24 +19,16 @@
         android:layout_height="65dp"
         android:orientation="vertical"
         android:gravity="center"
-        android:layout_toRightOf="@id/item_pesquisa_ivUsuario"
+        android:layout_toRightOf="@id/item_tarefa_ivUsuario"
         android:layout_marginLeft="16dp">
 
         <TextView
-            android:id="@+id/item_pesquisa_tvNome"
+            android:id="@+id/item_tarefa_tvDescricao"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:text="Miguel Wolf Bernardino"/>
-
-        <TextView
-            android:id="@+id/item_pesquisa_tvDescricao"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
-            android:textSize="16sp"
-            android:text="9150 - Volks"/>
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:textSize="14sp"
+            android:text="Cliente solicitou uma nova carga"/>
 
     </LinearLayout>
 

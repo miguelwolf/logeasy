@@ -59,7 +59,7 @@ public class PesquisarFragment extends Fragment implements RecyclerViewOnClickLi
 
         View v = inflater.inflate(R.layout.fragment_pesquisar, container, false);
 
-        mRecyclerView = (RecyclerView) v.findViewById(R.id.rv_list);
+        mRecyclerView = (RecyclerView) v.findViewById(R.id.pesquisar_rv_list);
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
