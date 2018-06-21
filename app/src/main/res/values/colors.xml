@@ -7,6 +7,7 @@
     <color name="grafite">#212121</color>
     <color name="grafite_claro">#797979</color>
     <color name="branco_transparente">#07000000</color>
+    <color name="cinza_claro">#eeeeee</color>
     <color name="preto_transparente">#80000000</color>
     <color name="background_light">#fffafafa</color>
     <color name="background_dark">#303030</color>

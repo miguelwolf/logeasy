@@ -1,16 +1,20 @@
 package br.com.miguelwolf.logeasy.view;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
@@ -91,6 +95,14 @@ public class PerfilFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true); //Mostrar o botão
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setHomeButtonEnabled(true);
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayShowTitleEnabled(true);
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Miguel Wolf");
+        ((AppCompatActivity) getActivity()).getSupportActionBar().show();
+
+        setHasOptionsMenu(true);
+
         View view = inflater.inflate(R.layout.fragment_perfil, container, false);
 
         ivPerfil = view.findViewById(R.id.perfil_iv_foto);
@@ -106,11 +118,13 @@ public class PerfilFragment extends Fragment {
         pessoa = new Pessoa();
         pessoaDAO = new PessoaDAO();
 
+        pessoa.setCodigo(0);
+
         SharedPreferences preferences =
                 getActivity().getSharedPreferences(Preferences.PREFERENCIA, MODE_PRIVATE);
 
-        if (preferences.contains(Preferences.TIPO_PESSOA)) {
-            if (preferences.getInt(Preferences.TIPO_PESSOA,0) == pessoa.getCodigo()) {
+        if (preferences.contains(Preferences.ID_PESSOA)) {
+            if (preferences.getInt(Preferences.ID_PESSOA,0) == pessoa.getCodigo()) {
                 btnEditarPerfil.setVisibility(View.VISIBLE);
             } else {
                 btnEditarPerfil.setVisibility(View.GONE);
@@ -126,10 +140,10 @@ public class PerfilFragment extends Fragment {
 
         if (preferences.contains(Preferences.TIPO_PESSOA)) {
 
-            if (preferences.getInt(Preferences.TIPO_PESSOA,0) == Pessoa.COMUM && preferences.getInt(Preferences.TIPO_PESSOA,0) != pessoa.getCodigo()) {
+            if (preferences.getInt(Preferences.TIPO_PESSOA,0) == Pessoa.COMUM && preferences.getInt(Preferences.ID_PESSOA,0) != pessoa.getCodigo()) {
+                rlDados.setVisibility(View.INVISIBLE);
 
-
-            } else if (preferences.getInt(Preferences.TIPO_PESSOA,0) == Pessoa.COMUM && preferences.getInt(Preferences.TIPO_PESSOA,0) == pessoa.getCodigo()) {
+            } else if (preferences.getInt(Preferences.TIPO_PESSOA,0) == Pessoa.COMUM && preferences.getInt(Preferences.ID_PESSOA,0) == pessoa.getCodigo()) {
                 rlDados.setVisibility(View.VISIBLE);
 
             } else if (preferences.getInt(Preferences.TIPO_PESSOA,0) == Pessoa.CAMINHONEIRO && pessoa.getTipo() != Pessoa.ADMINISTRADOR ) {
@@ -181,6 +195,23 @@ public class PerfilFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) { //Botão adicional na ToolBar
+//        Toast.makeText(getActivity(), "Aqui", Toast.LENGTH_SHORT).show();
+        switch (item.getItemId()) {
+            case android.R.id.home:  //ID do seu botão (gerado automaticamente pelo android, usando como está, deve funcionar
+                getFragmentManager().popBackStack();
+                if (getFragmentManager().getBackStackEntryCount() > 0 ){
+                    getFragmentManager().popBackStack();
+                } else {
+                    getActivity().onBackPressed();
+                }
+                break;
+            default:break;
+        }
+        return true;
     }
 
     /**

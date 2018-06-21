@@ -200,7 +200,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                     getSharedPreferences(Preferences.PREFERENCIA, MODE_PRIVATE);
 
             SharedPreferences.Editor editor = preferences.edit();
-            editor.putInt(Preferences.TIPO_PESSOA, Pessoa.CAMINHONEIRO);
+            editor.putInt(Preferences.TIPO_PESSOA, Pessoa.ADMINISTRADOR);
             editor.putInt(Preferences.ID_PESSOA, 0);
             editor.commit();
 

@@ -6,6 +6,7 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 import android.widget.TextView;
@@ -35,7 +36,11 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mMainFrame = (FrameLayout) findViewById(R.id.main_frame);
+        Toolbar myToolbar = findViewById(R.id.main_toolbar);
+        setSupportActionBar(myToolbar);
+        getSupportActionBar().hide();
+
+        mMainFrame = findViewById(R.id.main_frame);
 
 //        mTextMessage = (TextView) findViewById(R.id.message);
         navigation = (BottomNavigationView) findViewById(R.id.navigation);
@@ -46,8 +51,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         tarefasFragment = new TarefasFragment();
         agregadosFragment = new AgregadosFragment();
         opcoesFragment = new OpcoesFragment();
-//        setFragment(inicioFragment);
-        setFragment(new PerfilFragment());
+        setFragment(inicioFragment);
 
 //        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
 //        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
@@ -92,7 +96,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     };
 
     private void setFragment(Fragment fragment) {
-
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.main_frame, fragment);
         fragmentTransaction.commit();

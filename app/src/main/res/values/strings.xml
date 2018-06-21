@@ -59,4 +59,7 @@
     <string name="email">E-mail</string>
     <string name="senha">Senha</string>
 
+    <string name="pendente">PENDENTE</string>
+    <string name="historico">HISTÓRICO</string>
+
 </resources>
