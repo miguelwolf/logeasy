@@ -3,6 +3,7 @@ package br.com.miguelwolf.logeasy.model;
 public class Pessoa extends Endereco{
 
     private int codigo;
+    private String foto;
     private String nome;
     private String cpfCnpj;
     private String email;
