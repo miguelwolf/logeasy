@@ -12,5 +12,6 @@
     <color name="background_light">#fffafafa</color>
     <color name="background_dark">#303030</color>
     <color name="border_color">#bdbdbd</color>
+    <color name="border_alert">#3E3D42</color>
 
 </resources>

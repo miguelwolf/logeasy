@@ -62,4 +62,13 @@
     <string name="pendente">PENDENTE</string>
     <string name="historico">HISTÓRICO</string>
 
+
+    <string name="notificacao">Notificação</string>
+    <string name="sem_tarefas">Não há tarefas</string>
+
+    <string name="problema_conexao_novamente">Problema de Conexão, tente novamente</string>
+    <string name="tentar_novamente">Tentar novamente</string>
+    <string name="alerta">Alerta</string>
+    <string name="algo_inesperado">Algo inesperado aconteceu</string>
+
 </resources>
