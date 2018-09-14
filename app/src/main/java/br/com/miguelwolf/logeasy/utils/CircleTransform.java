@@ -1,4 +1,4 @@
-package br.com.miguelwolf.logeasy.Utils;
+package br.com.miguelwolf.logeasy.utils;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapShader;

@@ -25,7 +25,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.miguelwolf.logeasy.R;
-import br.com.miguelwolf.logeasy.Utils.Constants;
+import br.com.miguelwolf.logeasy.utils.Constants;
 import br.com.miguelwolf.logeasy.adapter.TarefaAdapter;
 import br.com.miguelwolf.logeasy.interfaces.RecyclerViewOnClickListenerHack;
 import br.com.miguelwolf.logeasy.model.Pesquisa;

@@ -1,7 +1,6 @@
 package br.com.miguelwolf.logeasy.view;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
@@ -14,14 +13,13 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
 import br.com.miguelwolf.logeasy.DAO.PessoaDAO;
 import br.com.miguelwolf.logeasy.R;
-import br.com.miguelwolf.logeasy.Utils.CircleTransform;
-import br.com.miguelwolf.logeasy.Utils.Preferences;
+import br.com.miguelwolf.logeasy.utils.CircleTransform;
+import br.com.miguelwolf.logeasy.utils.Preferences;
 import br.com.miguelwolf.logeasy.model.Pessoa;
 
 import static android.content.Context.MODE_PRIVATE;

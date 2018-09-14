@@ -1,4 +1,4 @@
-package br.com.miguelwolf.logeasy.Utils;
+package br.com.miguelwolf.logeasy.utils;
 
 public class Preferences {
 

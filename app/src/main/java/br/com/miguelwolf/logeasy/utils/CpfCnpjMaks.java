@@ -1,4 +1,4 @@
-package br.com.miguelwolf.logeasy.Utils;
+package br.com.miguelwolf.logeasy.utils;
 
 import android.text.Editable;
 import android.text.TextWatcher;
