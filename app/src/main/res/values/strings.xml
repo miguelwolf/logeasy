@@ -39,7 +39,7 @@
 
     <!-- Perfil -->
     <string name="editar_perfil">Editar Perfil</string>
-    <string name="CPF_CNPJ">CPF_CNPJ</string>
+    <string name="CPF_CNPJ">CPF/CNPJ</string>
     <string name="endereco">Endereço</string>
     <string name="numero">Número</string>
     <string name="bairro">Bairro</string>
@@ -50,25 +50,10 @@
     <string name="descricao">Descrição</string>
     <string name="permissoes">Atribuir Permissões</string>
     <string name="atribuir_carro">Atribuir Carro</string>
-    <string name="detalhes">Detalhes</string>
-    <string name="title_activity_cadastro">CadastroActivity</string>
+    <string name="title_activity_maps2">Map</string>
 
-    <!--Cadastro-->
-    <string name="nome">Nome</string>
-    <string name="usuario">Usuário</string>
-    <string name="email">E-mail</string>
-    <string name="senha">Senha</string>
-
-    <string name="pendente">PENDENTE</string>
-    <string name="historico">HISTÓRICO</string>
+    <string name="google_maps_key">AIzaSyDFEEhEXtvfXVwQZUT6YlaDlSYIMX8X5kw </string>
 
 
-    <string name="notificacao">Notificação</string>
-    <string name="sem_tarefas">Não há tarefas</string>
-
-    <string name="problema_conexao_novamente">Problema de Conexão, tente novamente</string>
-    <string name="tentar_novamente">Tentar novamente</string>
-    <string name="alerta">Alerta</string>
-    <string name="algo_inesperado">Algo inesperado aconteceu</string>
 
 </resources>

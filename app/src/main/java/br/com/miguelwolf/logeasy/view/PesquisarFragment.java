@@ -4,8 +4,6 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -51,15 +49,9 @@ public class PesquisarFragment extends Fragment implements RecyclerViewOnClickLi
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(false);
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setHomeButtonEnabled(false);
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayShowTitleEnabled(false);
-        ((AppCompatActivity) getActivity()).getSupportActionBar().show();
-
         View v = inflater.inflate(R.layout.fragment_pesquisar, container, false);
 
-        mRecyclerView = (RecyclerView) v.findViewById(R.id.pesquisar_rv_list);
+        mRecyclerView = (RecyclerView) v.findViewById(R.id.rv_list);
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
@@ -206,13 +198,7 @@ public class PesquisarFragment extends Fragment implements RecyclerViewOnClickLi
         Toast.makeText(getActivity(), "Position: "+position, Toast.LENGTH_SHORT).show();
 
         PesquisaAdapter adapter = (PesquisaAdapter) mRecyclerView.getAdapter();
-
-        FragmentTransaction fragmentPerfil = getActivity().getSupportFragmentManager().beginTransaction();
-        fragmentPerfil.replace(R.id.main_frame, new PerfilFragment());
-        fragmentPerfil.addToBackStack("Back");
-        fragmentPerfil.commit();
-
-        //adapter.removeListItem(position);
+        adapter.removeListItem(position);
     }
 
     @Override
