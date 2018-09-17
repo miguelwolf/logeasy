@@ -14,7 +14,7 @@ import com.squareup.picasso.Picasso;
 import java.util.List;
 
 import br.com.miguelwolf.logeasy.R;
-import br.com.miguelwolf.logeasy.Utils.CircleTransform;
+import br.com.miguelwolf.logeasy.utils.CircleTransform;
 import br.com.miguelwolf.logeasy.interfaces.RecyclerViewOnClickListenerHack;
 import br.com.miguelwolf.logeasy.model.Rota;
 

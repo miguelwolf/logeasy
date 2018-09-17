@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
@@ -47,7 +48,7 @@ public class PerfilFragment extends Fragment {
     private Button btnAtribuirCarro;
 
     private RelativeLayout rlDados;
-    private RelativeLayout rlCarro;
+    private ConstraintLayout clCarro;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -92,14 +93,18 @@ public class PerfilFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        try {
+            ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true); //Mostrar o botão
+            ((AppCompatActivity) getActivity()).getSupportActionBar().setHomeButtonEnabled(true);
+            ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayShowTitleEnabled(true);
+            ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Miguel Wolf");
+            ((AppCompatActivity) getActivity()).getSupportActionBar().show();
 
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true); //Mostrar o botão
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setHomeButtonEnabled(true);
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayShowTitleEnabled(true);
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Miguel Wolf");
-        ((AppCompatActivity) getActivity()).getSupportActionBar().show();
+            setHasOptionsMenu(true);
 
-        setHasOptionsMenu(true);
+        } catch (NullPointerException npe) {
+            npe.printStackTrace();
+        }
 
         View view = inflater.inflate(R.layout.fragment_perfil, container, false);
 
@@ -111,7 +116,7 @@ public class PerfilFragment extends Fragment {
         btnAtribuirPermissao = view.findViewById(R.id.perfil_btn_permissoes);
 
         rlDados = view.findViewById(R.id.perfil_rl_dados);
-        rlCarro = view.findViewById(R.id.perfil_rl_carro);
+        clCarro = view.findViewById(R.id.perfil_cl_carro);
 
         pessoa = new Pessoa();
         pessoaDAO = new PessoaDAO();

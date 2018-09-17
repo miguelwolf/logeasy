@@ -76,9 +76,9 @@ public class PesquisaAdapter extends RecyclerView.Adapter<PesquisaAdapter.MyView
         public MyViewHolder(View itemView) {
             super(itemView);
 
-            ivUsuario = itemView.findViewById(R.id.item_pesquisa_ivUsuario);
-            tvNome = itemView.findViewById(R.id.item_pesquisa_tvNome);
-            tvDescricao = itemView.findViewById(R.id.item_pesquisa_tvDescricao);
+            ivUsuario = itemView.findViewById(R.id.item_pesquisa_iv_usuario);
+            tvNome = itemView.findViewById(R.id.item_pesquisa_tv_nome);
+            tvDescricao = itemView.findViewById(R.id.item_pesquisa_tv_descricao);
 
             itemView.setOnClickListener(this);
 
