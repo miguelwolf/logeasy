@@ -8,6 +8,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
+import android.widget.Switch;
 
 import br.com.miguelwolf.logeasy.R;
 
@@ -20,7 +22,7 @@ import br.com.miguelwolf.logeasy.R;
  * Use the {@link OpcoesFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class OpcoesFragment extends Fragment {
+public class OpcoesFragment extends Fragment implements CompoundButton.OnCheckedChangeListener {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -67,8 +69,13 @@ public class OpcoesFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         ((AppCompatActivity) getActivity()).getSupportActionBar().hide();
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_opcoes, container, false);
+
+        View v = inflater.inflate(R.layout.fragment_opcoes, container, false);
+
+        Switch sw = v.findViewById(R.id.opcoes_sw_tema);
+        sw.setOnCheckedChangeListener(this);
+
+        return v;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -93,6 +100,17 @@ public class OpcoesFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    @Override
+    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
+        if (isChecked) {
+            getActivity().setTheme(R.style.AppThemeDark);
+        } else {
+            getActivity().setTheme(R.style.AppTheme);
+        }
+
     }
 
     /**

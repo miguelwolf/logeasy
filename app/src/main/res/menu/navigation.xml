@@ -22,8 +22,8 @@
         android:title="@string/title_agregados" />
 
     <item
-        android:id="@+id/navigation_options"
-        android:icon="@mipmap/ic_settings_black_24dp"
-        android:title="@string/title_options" />
+        android:id="@+id/navigation_perfil"
+        android:icon="@mipmap/ic_baseline_person_24px"
+        android:title="@string/title_perfil" />
 
 </menu>

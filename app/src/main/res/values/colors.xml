@@ -4,6 +4,10 @@
     <color name="colorPrimaryDark">#0288D1</color>
     <color name="colorPrimaryLight">#81D4FA</color>
     <color name="colorAccent">#ffc107</color>
+
+    <color name="backgroundAviso">#fffbd5</color>
+    <color name="textAvisoVerde">#6ad400</color>
+
     <color name="grafite">#212121</color>
     <color name="grafite_claro">#797979</color>
     <color name="branco_transparente">#07000000</color>
@@ -13,5 +17,7 @@
     <color name="background_dark">#303030</color>
     <color name="border_color">#bdbdbd</color>
     <color name="border_alert">#3E3D42</color>
+    <color name="textBlack">#3E3D42</color>
+    <color name="textWhite">#FFFFFF</color>
 
 </resources>

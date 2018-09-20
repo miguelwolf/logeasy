@@ -4,7 +4,7 @@
     <string name="title_search">Procurar</string>
     <string name="title_task">Tarefas</string>
     <string name="title_agregados">Agregados</string>
-    <string name="title_options">Opções</string>
+    <string name="title_perfil">Perfil</string>
     <string name="title_activity_maps">Map</string>
 
     <string name="editar_login">Editar login</string>
@@ -63,6 +63,16 @@
     <string name="historico">Histórico</string>
     <string name="sem_tarefas">Não há tarefas</string>
 
+    <!--Carro-->
+    <string name="sem_caminhoneiro">Não há caminhoneiros</string>
+    <string name="marca">Marca</string>
+    <string name="modelo">Modelo</string>
+    <string name="cor">Cor</string>
+    <string name="placa">Placa</string>
+    <string name="vin">VIN</string>
+    <string name="ano">Ano</string>
+    <string name="alterar">Alterar</string>
+
 
     <string name="google_maps_key">AIzaSyDFEEhEXtvfXVwQZUT6YlaDlSYIMX8X5kw </string>
 
@@ -71,8 +81,14 @@
     <string name="alerta">Alerta</string>
     <string name="algo_inesperado">Algo inesperado aconteceu</string>
 
-
-
+    <!--https://github.com/onmyway133/fantastic-android-animation/blob/master/Animation/button.md
+    https://github.com/varunest/SparkButton
+    https://github.com/KeepSafe/TapTargetView
+    https://github.com/sjwall/MaterialTapTargetPrompt
+    https://github.com/JorgeCastilloPrz/FABProgressCircle
+    https://github.com/kongnanlive/SearchMenuAnim
+    https://github.com/StevenDXC/DxLoadingButton
+    https://github.com/frogermcs/LikeAnimation-->
 
 
 </resources>

@@ -6,14 +6,16 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
@@ -108,6 +110,51 @@ public class PerfilFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_perfil, container, false);
 
+
+        /** ================================= TOOLBAR ================================= **/
+        try {
+            TextView tv = view.findViewById(R.id.toolbar_perfil_tv_descricao);
+            Toolbar toolbar = view.findViewById(R.id.perfil_toolbar);
+            toolbar.setTitle("");
+            tv.setText("miguel_wolf");
+
+
+            ImageView ivBtnOpcoes = toolbar.findViewById(R.id.toolbar_perfil_iv_opcoes);
+            ivBtnOpcoes.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    FragmentTransaction fragmentOpcoes = getActivity().getSupportFragmentManager().beginTransaction();
+                    fragmentOpcoes.replace(R.id.main_frame, new OpcoesFragment());
+                    fragmentOpcoes.addToBackStack(null);
+                    fragmentOpcoes.commit();
+
+                }
+            });
+
+            ImageView ivBtnVoltar = toolbar.findViewById(R.id.toolbar_perfil_iv_voltar);
+            ivBtnVoltar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    getFragmentManager().popBackStack();
+                    if (getFragmentManager().getBackStackEntryCount() > 0) {
+                        getFragmentManager().popBackStack();
+                    } else {
+                        getActivity().onBackPressed();
+                    }
+
+                }
+            });
+
+
+            ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
+        } catch (NullPointerException npe) {
+            npe.printStackTrace();
+        }
+        /** ================================= TOOLBAR ================================= **/
+
+
         ivPerfil = view.findViewById(R.id.perfil_iv_foto);
         ivCarro = view.findViewById(R.id.perfil_iv_carro);
 
@@ -127,7 +174,7 @@ public class PerfilFragment extends Fragment {
                 getActivity().getSharedPreferences(Preferences.PREFERENCIA, MODE_PRIVATE);
 
         if (preferences.contains(Preferences.ID_PESSOA)) {
-            if (preferences.getInt(Preferences.ID_PESSOA,0) == pessoa.getCodigo()) {
+            if (preferences.getInt(Preferences.ID_PESSOA, 0) == pessoa.getCodigo()) {
                 btnEditarPerfil.setVisibility(View.VISIBLE);
             } else {
                 btnEditarPerfil.setVisibility(View.GONE);
@@ -143,20 +190,20 @@ public class PerfilFragment extends Fragment {
 
         if (preferences.contains(Preferences.TIPO_PESSOA)) {
 
-            if (preferences.getInt(Preferences.TIPO_PESSOA,0) == Pessoa.COMUM && preferences.getInt(Preferences.ID_PESSOA,0) != pessoa.getCodigo()) {
+            if (preferences.getInt(Preferences.TIPO_PESSOA, 0) == Pessoa.COMUM && preferences.getInt(Preferences.ID_PESSOA, 0) != pessoa.getCodigo()) {
                 rlDados.setVisibility(View.INVISIBLE);
 
-            } else if (preferences.getInt(Preferences.TIPO_PESSOA,0) == Pessoa.COMUM && preferences.getInt(Preferences.ID_PESSOA,0) == pessoa.getCodigo()) {
+            } else if (preferences.getInt(Preferences.TIPO_PESSOA, 0) == Pessoa.COMUM && preferences.getInt(Preferences.ID_PESSOA, 0) == pessoa.getCodigo()) {
                 rlDados.setVisibility(View.VISIBLE);
 
-            } else if (preferences.getInt(Preferences.TIPO_PESSOA,0) == Pessoa.CAMINHONEIRO && pessoa.getTipo() != Pessoa.ADMINISTRADOR ) {
+            } else if (preferences.getInt(Preferences.TIPO_PESSOA, 0) == Pessoa.CAMINHONEIRO && pessoa.getTipo() != Pessoa.ADMINISTRADOR) {
                 rlDados.setVisibility(View.VISIBLE);
                 Picasso.get().load(R.drawable.caminhao).into(ivCarro);
 
-            } else if (preferences.getInt(Preferences.TIPO_PESSOA,0) == Pessoa.CAMINHONEIRO && pessoa.getTipo() == Pessoa.ADMINISTRADOR ) {
+            } else if (preferences.getInt(Preferences.TIPO_PESSOA, 0) == Pessoa.CAMINHONEIRO && pessoa.getTipo() == Pessoa.ADMINISTRADOR) {
                 Picasso.get().load(R.drawable.caminhao).into(ivCarro);
 
-            } else if (preferences.getInt(Preferences.TIPO_PESSOA,0) == Pessoa.ADMINISTRADOR) {
+            } else if (preferences.getInt(Preferences.TIPO_PESSOA, 0) == Pessoa.ADMINISTRADOR) {
                 rlDados.setVisibility(View.VISIBLE);
                 btnAtribuirCarro.setVisibility(View.VISIBLE);
                 btnAtribuirPermissao.setVisibility(View.VISIBLE);
@@ -200,22 +247,24 @@ public class PerfilFragment extends Fragment {
         mListener = null;
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) { //Botão adicional na ToolBar
-//        Toast.makeText(getActivity(), "Aqui", Toast.LENGTH_SHORT).show();
-        switch (item.getItemId()) {
-            case android.R.id.home:  //ID do seu botão (gerado automaticamente pelo android, usando como está, deve funcionar
-                getFragmentManager().popBackStack();
-                if (getFragmentManager().getBackStackEntryCount() > 0 ){
-                    getFragmentManager().popBackStack();
-                } else {
-                    getActivity().onBackPressed();
-                }
-                break;
-            default:break;
-        }
-        return true;
-    }
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//
+//        Toast.makeText(getActivity(), "aqui", Toast.LENGTH_SHORT).show();
+//
+//        switch (item.getItemId()) {
+//            case android.R.id.home:
+//
+//                break;
+//
+//            case R.id.perfil_iv_opcoes:
+//
+//                break;
+//
+//            default:break;
+//        }
+//        return true;
+//    }
 
     /**
      * This interface must be implemented by activities that contain this
@@ -228,7 +277,6 @@ public class PerfilFragment extends Fragment {
      * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
 }

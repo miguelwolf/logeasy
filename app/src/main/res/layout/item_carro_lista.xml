@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <CheckBox
+        android:id="@+id/item_carro_lista_cb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/item_carro_lista_cb"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/item_carro_lista_iv"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/caminhao"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/item_carro_lista_tv_marca_modelo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:text="SCANIA - R440"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/item_carro_lista_tv_ano"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/item_carro_lista_iv"
+            app:layout_constraintTop_toTopOf="@+id/item_carro_lista_iv" />
+
+        <TextView
+            android:id="@+id/item_carro_lista_tv_ano"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="2016"
+            app:layout_constraintBottom_toTopOf="@+id/item_carro_lista_tv_placa"
+            app:layout_constraintStart_toEndOf="@+id/item_carro_lista_iv"
+            app:layout_constraintTop_toBottomOf="@+id/item_carro_lista_tv_marca_modelo" />
+
+        <TextView
+            android:id="@+id/item_carro_lista_tv_placa"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="XYZ-5621"
+            android:textAlignment="textStart"
+            app:layout_constraintBottom_toBottomOf="@+id/item_carro_lista_iv"
+            app:layout_constraintStart_toEndOf="@+id/item_carro_lista_iv"
+            app:layout_constraintTop_toBottomOf="@+id/item_carro_lista_tv_ano" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/item_carro_lista_rv"
+            android:layout_width="0dp"
+            android:layout_height="32dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:orientation="horizontal"
+            android:textAlignment="textEnd"
+            android:foregroundGravity="center_vertical|right"
+            app:layout_constraintBottom_toBottomOf="@+id/item_carro_lista_iv"
+            app:layout_constraintEnd_toStartOf="@+id/item_carro_lista_tv_mais_caminhoneiros"
+            app:layout_constraintStart_toEndOf="@+id/item_carro_lista_tv_placa"
+            app:layout_constraintTop_toBottomOf="@+id/item_carro_lista_tv_ano" />
+
+        <TextView
+            android:id="@+id/item_carro_lista_tv_mais_caminhoneiros"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginTop="8dp"
+            android:text="..."
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="@+id/item_carro_lista_rv"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/item_carro_lista_rv" />
+
+    </android.support.constraint.ConstraintLayout>
+
+</android.support.constraint.ConstraintLayout>

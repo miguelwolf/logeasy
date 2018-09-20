@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
@@ -65,27 +64,22 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
-//                    mTextMessage.setText(R.string.title_home);
                     setFragment(inicioFragment);
                     return true;
 
                 case R.id.navigation_search:
-//                    mTextMessage.setText(R.string.title_search);
                     setFragment(pesquisarFragment);
                     return true;
 
                 case R.id.navigation_task:
-//                    mTextMessage.setText(R.string.title_task);
                     setFragment(tarefasFragment);
                     return true;
 
                 case R.id.navigation_agregados:
-//                    mTextMessage.setText(R.string.title_agregados);
                     setFragment(agregadosFragment);
                     return true;
 
-                case R.id.navigation_options:
-//                    mTextMessage.setText(R.string.title_options);
+                case R.id.navigation_perfil:
                     setFragment(perfilFragment);
                     return true;
             }
