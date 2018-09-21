@@ -72,6 +72,8 @@
     <string name="vin">VIN</string>
     <string name="ano">Ano</string>
     <string name="alterar">Alterar</string>
+    <string name="pesquisar">Pesquisar</string>
+    <string name="sem_resultados">Não há resultados</string>
 
 
     <string name="google_maps_key">AIzaSyDFEEhEXtvfXVwQZUT6YlaDlSYIMX8X5kw </string>

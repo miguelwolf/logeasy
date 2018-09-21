@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.CarroFragment">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/caminhao"
+            app:layout_constraintBottom_toTopOf="@+id/carro_guideline"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <android.support.v7.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="@color/preto_transparente"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toTopOf="@+id/carro_guideline"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/carro_fab_photo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="16dp"
+            android:src="@drawable/ic_baseline_photo_camera_24px"
+            android:tint="@color/textWhite"
+            app:layout_constraintBottom_toTopOf="@+id/carro_guideline"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/carro_guideline" />
+
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/carro_cv_sem_caminhoneiros"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            app:cardBackgroundColor="@color/backgroundAviso"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/carro_fab_photo">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:text="@string/sem_caminhoneiro"
+                android:textColor="@color/textAvisoVerde" />
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/carro_cv_dados"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            app:cardBackgroundColor="@color/background_light"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/carro_cv_sem_caminhoneiros">
+
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/carro_tv_marca_titulo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/marca"
+                    android:textSize="@dimen/titulo"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <EditText
+                    android:id="@+id/carro_et_marca_descricao"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@null"
+                    android:inputType="none"
+                    android:maxLines="1"
+                    android:text="SCANIA"
+                    android:textAlignment="textStart"
+                    android:textSize="@dimen/titulo"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/carro_card_dados_guideline"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/carro_tv_modelo_titulo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/modelo"
+                    android:textSize="@dimen/titulo"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/carro_tv_marca_titulo" />
+
+                <EditText
+                    android:id="@+id/carro_et_modelo_descricao"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@null"
+                    android:inputType="none"
+                    android:maxLines="1"
+                    android:text="R440"
+                    android:textAlignment="textStart"
+                    android:textSize="@dimen/titulo"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/carro_card_dados_guideline"
+                    app:layout_constraintTop_toBottomOf="@+id/carro_et_marca_descricao" />
+
+                <TextView
+                    android:id="@+id/carro_tv_ano_titulo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/ano"
+                    android:textSize="@dimen/titulo"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/carro_tv_modelo_titulo" />
+
+                <EditText
+                    android:id="@+id/carro_et_ano_descricao"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@null"
+                    android:inputType="none"
+                    android:maxLines="1"
+                    android:text="2016"
+                    android:textAlignment="textStart"
+                    android:textSize="@dimen/titulo"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/carro_card_dados_guideline"
+                    app:layout_constraintTop_toBottomOf="@+id/carro_et_modelo_descricao" />
+
+                <TextView
+                    android:id="@+id/carro_tv_cor_titulo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/cor"
+                    android:textSize="@dimen/titulo"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/carro_tv_ano_titulo" />
+
+                <EditText
+                    android:id="@+id/carro_et_cor_descricao"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@null"
+                    android:inputType="none"
+                    android:maxLines="1"
+                    android:text="Azul"
+                    android:textAlignment="textStart"
+                    android:textSize="@dimen/titulo"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/carro_card_dados_guideline"
+                    app:layout_constraintTop_toBottomOf="@+id/carro_et_ano_descricao" />
+
+                <TextView
+                    android:id="@+id/carro_tv_placa_titulo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/placa"
+                    android:textSize="@dimen/titulo"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/carro_tv_cor_titulo" />
+
+                <EditText
+                    android:id="@+id/carro_et_placa_descricao"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@null"
+                    android:inputType="none"
+                    android:maxLines="1"
+                    android:text="XYZ-6582"
+                    android:textAlignment="textStart"
+                    android:textSize="@dimen/titulo"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/carro_card_dados_guideline"
+                    app:layout_constraintTop_toBottomOf="@+id/carro_et_cor_descricao" />
+
+                <TextView
+                    android:id="@+id/carro_tv_vin_titulo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/vin"
+                    android:textSize="@dimen/titulo"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/carro_tv_placa_titulo" />
+
+                <EditText
+                    android:id="@+id/carro_et_vin_descricao"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@null"
+                    android:inputType="none"
+                    android:maxLines="1"
+                    android:text="1HGBH41JXMN109186"
+                    android:textAlignment="textStart"
+                    android:textSize="@dimen/titulo"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/carro_card_dados_guideline"
+                    app:layout_constraintTop_toBottomOf="@+id/carro_et_placa_descricao" />
+
+                <android.support.constraint.Guideline
+                    android:id="@+id/carro_card_dados_guideline"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.20" />
+
+            </android.support.constraint.ConstraintLayout>
+
+        </android.support.v7.widget.CardView>
+
+        <Button
+            android:id="@+id/carro_btn_alterar"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:layout_marginBottom="16dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:background="@drawable/button_ripple_back_blue"
+            android:paddingEnd="32dp"
+            android:paddingStart="32dp"
+            android:text="@string/alterar"
+            android:textColor="@color/textWhite"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/carro_guideline"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.40" />
+
+    </android.support.constraint.ConstraintLayout>
+
+</FrameLayout>
