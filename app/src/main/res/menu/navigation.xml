@@ -18,8 +18,8 @@
 
     <item
         android:id="@+id/navigation_agregados"
-        android:icon="@mipmap/ic_supervisor_account_black_24dp"
-        android:title="@string/title_agregados" />
+        android:icon="@drawable/ic_domain"
+        android:title="@string/title_empresa" />
 
     <item
         android:id="@+id/navigation_perfil"

@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     private InicioFragment inicioFragment;
     private PesquisarFragment pesquisarFragment;
     private TarefasFragment tarefasFragment;
-    private AgregadosFragment agregadosFragment;
+    private EmpresaFragment empresaFragment;
     private PerfilFragment perfilFragment;
 //    private OpcoesFragment opcoesFragment;
 
@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         inicioFragment = new InicioFragment();
         pesquisarFragment = new PesquisarFragment();
         tarefasFragment = new TarefasFragment();
-        agregadosFragment = new AgregadosFragment();
+        empresaFragment = new EmpresaFragment();
         perfilFragment = new PerfilFragment();
 
 
@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                     return true;
 
                 case R.id.navigation_agregados:
-                    setFragment(agregadosFragment);
+                    setFragment(empresaFragment);
                     return true;
 
                 case R.id.navigation_perfil:

@@ -2,7 +2,6 @@ package br.com.miguelwolf.logeasy.view;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -10,62 +9,38 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckBox;
-import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.crowdfire.cfalertdialog.CFAlertDialog;
 import com.shashank.sony.fancytoastlib.FancyToast;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.miguelwolf.logeasy.adapter.PesquisaAdapter;
 import br.com.miguelwolf.logeasy.R;
+import br.com.miguelwolf.logeasy.adapter.TarefaAdapter;
 import br.com.miguelwolf.logeasy.interfaces.RecyclerViewOnClickListenerHack;
 import br.com.miguelwolf.logeasy.model.Pesquisa;
 import br.com.miguelwolf.logeasy.utils.Constants;
 
 
-/**
- * Fragment utilizado para que o usuário possa pesquisar por motoristas, clientes e lugares.
- *
- * @author Miguel Wolf
- * @since 05/04/2018
- */
-public class PesquisarFragment extends Fragment implements RecyclerViewOnClickListenerHack, SwipeRefreshLayout.OnRefreshListener, View.OnClickListener {
+public class EmpresaSlideFragment extends Fragment implements RecyclerViewOnClickListenerHack, SwipeRefreshLayout.OnRefreshListener {
 
-    private AsyncTask asyncPesquisa;
-
-    private boolean chkAgregados = true,
-                        chkClientes = true,
-                        chkCaminhoneiros = true,
-                        chkCaminhoes = true;
-
-    private EditText editTextPesquisa;
+    private AsyncTask asyncTarefas;
 
     private int ativ;
 
-    private List<Pesquisa> mListPesquisa = new ArrayList<>();
-    private List<Pesquisa> mListPesquisaJSON,
-                            mListAgregadosJSON = new ArrayList<>(),
-                            mListClientesJSON = new ArrayList<>(),
-                            mListCaminhoneirosJSON = new ArrayList<>(),
-                            mListCaminhoesJSON = new ArrayList<>();
+    private List<Pesquisa> mListTarefas = new ArrayList<>();
+    private List<Pesquisa> mListTarefasJSON;
 
     private OnFragmentInteractionListener mListener;
-
-    private PesquisaAdapter adapter;
 
     private RecyclerView mRecyclerView;
 
@@ -73,41 +48,39 @@ public class PesquisarFragment extends Fragment implements RecyclerViewOnClickLi
 
     private SwipeRefreshLayout mSwipeRefreshLayout;
 
+    private TarefaAdapter adapter;
+
     private View view;
 
 
-    public PesquisarFragment() {
+    public EmpresaSlideFragment() {}
 
+
+    public static EmpresaSlideFragment newInstance() {
+        EmpresaSlideFragment fragment = new EmpresaSlideFragment();
+        Bundle args = new Bundle();
+        fragment.setArguments(args);
+        return fragment;
     }
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+        }
     }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_pesquisar, container, false);
 
-        view = v;
+        View view = inflater.inflate(R.layout.fragment_empresa_slide, container, false);
 
-        try {
-            ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(false);
-            ((AppCompatActivity) getActivity()).getSupportActionBar().setHomeButtonEnabled(false);
-            ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayShowTitleEnabled(false);
-            ((AppCompatActivity) getActivity()).getSupportActionBar().show();
-        }catch (NullPointerException npe){
-            npe.printStackTrace();
-        }
+        this.view = view;
 
-        v.findViewById(R.id.pesquisa_iv_procurar).setOnClickListener(this);
-        v.findViewById(R.id.pesquisa_iv_filtrar).setOnClickListener(this);
-
-
-        editTextPesquisa = v.findViewById(R.id.pesquisa_et_pesquisar);
-
-        mRecyclerView = v.findViewById(R.id.pesquisa_rv_list);
+        mRecyclerView = view.findViewById(R.id.tarefa_slide_rv_list);
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
@@ -120,13 +93,13 @@ public class PesquisarFragment extends Fragment implements RecyclerViewOnClickLi
                 super.onScrolled(recyclerView, dx, dy);
 
                 LinearLayoutManager llm = (LinearLayoutManager) mRecyclerView.getLayoutManager();
-                PesquisaAdapter adapter = (PesquisaAdapter) mRecyclerView.getAdapter();
+                TarefaAdapter adapter = (TarefaAdapter) mRecyclerView.getAdapter();
 
-                if (mListPesquisa.size() == llm.findLastCompletelyVisibleItemPosition() + 1) {
-                    List<Pesquisa> listAux = getSetPesquisaList(15);
+                if (mListTarefas.size() == llm.findLastCompletelyVisibleItemPosition() + 1) {
+                    List<Pesquisa> listAux = getSetTarefaList(10);
 
                     for (int i = 0; i < listAux.size(); i++) {
-                        adapter.addListItem(listAux.get(i), mListPesquisa.size());
+                        adapter.addListItem(listAux.get(i), mListTarefas.size());
                     }
                 }
 
@@ -138,13 +111,13 @@ public class PesquisarFragment extends Fragment implements RecyclerViewOnClickLi
         mRecyclerView.setLayoutManager(llm);
 
 
-        mSwipeRefreshLayout = v.findViewById(R.id.pesquisa_slide_sr);
+        mSwipeRefreshLayout = view.findViewById(R.id.tarefa_slide_sr);
         mSwipeRefreshLayout.setOnRefreshListener(this);
 
 
-        asyncPesquisa = new CarregarItensPesquisa(v, "").execute();
+        asyncTarefas = new CarregarItensTarefa(view).execute();
 
-        return v;
+        return view;
     }
 
 
@@ -154,10 +127,27 @@ public class PesquisarFragment extends Fragment implements RecyclerViewOnClickLi
         }
     }
 
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        asyncTarefas = new CarregarItensTarefa(view).execute();
+    }
+
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
+
+        if (context instanceof OnFragmentInteractionListener) {
+            mListener = (OnFragmentInteractionListener) context;
+
+        } else {
+//            throw new RuntimeException(context.toString()
+//                    + " must implement OnFragmentInteractionListener");
+        }
     }
+
 
     @Override
     public void onDetach() {
@@ -171,54 +161,32 @@ public class PesquisarFragment extends Fragment implements RecyclerViewOnClickLi
      * @param qtd, utlizado para definir o tanto de elementos eu quero exibir, 5 itens, 9 itens, 25 itens.
      * @return
      */
-    public List<Pesquisa> getSetPesquisaList(int qtd){
+    public List<Pesquisa> getSetTarefaList(int qtd){
 
         List<Pesquisa> listAux = new ArrayList<>();
 
         int posicaoPartida = 0;
 
-        if (mListPesquisa.size() != 0) {
-            posicaoPartida = mListPesquisa.size();
+        if (mListTarefas.size() != 0) {
+            posicaoPartida = mListTarefas.size();
         }
 
         qtd += posicaoPartida;
 
-        for (int i = posicaoPartida; i < qtd && i < mListPesquisaJSON.size(); i++) {
-            listAux.add(mListPesquisaJSON.get(i));
+        for (int i = posicaoPartida; i < qtd && i < mListTarefasJSON.size(); i++) {
+            listAux.add(mListTarefasJSON.get(i));
         }
-
-        if (chkAgregados)
-            for (int i = posicaoPartida; i < qtd && i < mListAgregadosJSON.size(); i++) {
-                listAux.add(mListAgregadosJSON.get(i));
-            }
-
-        if (chkClientes)
-            for (int i = posicaoPartida; i < qtd && i < mListClientesJSON.size(); i++) {
-                listAux.add(mListClientesJSON.get(i));
-            }
-
-        if (chkCaminhoes)
-            for (int i = posicaoPartida; i < qtd && i < mListCaminhoesJSON.size(); i++) {
-                listAux.add(mListCaminhoesJSON.get(i));
-            }
-
-        if (chkCaminhoneiros)
-            for (int i = posicaoPartida; i < qtd && i < mListCaminhoneirosJSON.size(); i++) {
-                listAux.add(mListCaminhoneirosJSON.get(i));
-            }
 
         return (listAux);
 
     }
 
 
-
     @Override
     public void onClickListener(View v, int position) {
         Toast.makeText(getActivity(), "Position: "+position, Toast.LENGTH_SHORT).show();
 
-        PesquisaAdapter adapter = (PesquisaAdapter) mRecyclerView.getAdapter();
-
+        adapter = (TarefaAdapter) mRecyclerView.getAdapter();
 
         FragmentTransaction fragmentPerfil = getActivity().getSupportFragmentManager().beginTransaction();
         fragmentPerfil.replace(R.id.main_frame, new PerfilFragment());
@@ -229,84 +197,8 @@ public class PesquisarFragment extends Fragment implements RecyclerViewOnClickLi
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        int id = item.getItemId();
-        if(id == R.id.pesquisa_iv_procurar){
-
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
-
-    @Override
     public void onRefresh() {
-        asyncPesquisa = new CarregarItensPesquisa(view, editTextPesquisa.getText().toString()).execute();
-    }
-
-
-    @Override
-    public void onClick(View v) {
-
-        switch (v.getId()) {
-
-            case R.id.pesquisa_iv_procurar:
-                asyncPesquisa = new CarregarItensPesquisa(v, editTextPesquisa.getText().toString()).execute();
-                break;
-
-            case R.id.pesquisa_iv_filtrar:
-
-                CFAlertDialog.Builder builder = new CFAlertDialog.Builder(getContext());
-                builder.setDialogStyle(CFAlertDialog.CFAlertStyle.ALERT);
-                builder.setTitle(getResources().getString(R.string.filtrar));
-                builder.setMultiChoiceItems(new String[]{
-                            getResources().getString(R.string.agregados),
-                            getResources().getString(R.string.clientes),
-                            getResources().getString(R.string.caminhoneiros),
-                            getResources().getString(R.string.caminhoes)},
-                        new boolean[]{chkAgregados, chkClientes, chkCaminhoneiros, chkCaminhoes}, new DialogInterface.OnMultiChoiceClickListener() {
-
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i, boolean b) {
-
-                        if (i == 0)
-                            chkAgregados = b;
-
-                        else if (i == 1)
-                            chkClientes = b;
-
-                        else if (i == 2)
-                            chkCaminhoneiros = b;
-
-                        else if (i == 3)
-                            chkCaminhoes = b;
-
-                    }
-
-                });
-
-                builder.addButton(getResources().getString(R.string.ok), -1, -1, CFAlertDialog.CFAlertActionStyle.POSITIVE, CFAlertDialog.CFAlertActionAlignment.END, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-
-
-                        getSetPesquisaList(25);
-
-                        dialogInterface.dismiss();
-
-                    }
-                });
-                builder.show();
-
-                break;
-
-            default:
-                break;
-
-        }
-
+        asyncTarefas = new CarregarItensTarefa(view).execute();
     }
 
 
@@ -315,15 +207,14 @@ public class PesquisarFragment extends Fragment implements RecyclerViewOnClickLi
     }
 
 
+
     @SuppressLint("StaticFieldLeak")
-    private class CarregarItensPesquisa extends AsyncTask<Void, Void, Void> {
+    private class CarregarItensTarefa extends AsyncTask<Void, Void, Void> {
 
         private ProgressBar progressBar;
-        private String pesquisa;
         private View v;
 
-        public CarregarItensPesquisa(View v, String pesquisa) {
-            this.pesquisa = pesquisa;
+        public CarregarItensTarefa(View v) {
             this.v = v;
         }
 
@@ -332,7 +223,7 @@ public class PesquisarFragment extends Fragment implements RecyclerViewOnClickLi
 
             try {
 
-                progressBar = v.findViewById(R.id.pesquisa_slide_pb);
+                progressBar = v.findViewById(R.id.tarefa_slide_pb);
                 progressBar.setVisibility(View.VISIBLE);
                 mRecyclerView.setVisibility(View.INVISIBLE);
 
@@ -347,7 +238,7 @@ public class PesquisarFragment extends Fragment implements RecyclerViewOnClickLi
 
             try {
 
-                carregarPesquisa(pesquisa);
+                carregarCarrinho();
 
             } catch (NullPointerException npe) {
                 ativ = Constants.ERRO_APP;
@@ -370,15 +261,15 @@ public class PesquisarFragment extends Fragment implements RecyclerViewOnClickLi
 
                             try {
 
-                                mListPesquisa = getSetPesquisaList(15);
+                                mListTarefas = getSetTarefaList(15);
 
-                                adapter = new PesquisaAdapter(getActivity(), mListPesquisa);
-                                adapter.setmRecyclerViewOnClickListenerHack(PesquisarFragment.this);
+                                adapter = new TarefaAdapter(getActivity(), mListTarefas);
+                                adapter.setmRecyclerViewOnClickListenerHack(EmpresaSlideFragment.this);
 
 
-                                TextView tv = v.findViewById(R.id.pesquisa_slide_tv_sem_tarefas);
+                                TextView tv = v.findViewById(R.id.tarefa_slide_tv_sem_tarefas);
 
-                                if (mListPesquisa.size() == 0)
+                                if (mListTarefas.size() == 0)
                                     tv.setVisibility(View.VISIBLE);
                                 else
                                     tv.setVisibility(View.GONE);
@@ -434,80 +325,72 @@ public class PesquisarFragment extends Fragment implements RecyclerViewOnClickLi
             }
         }
 
-        private void carregarPesquisa(String pesquisa) {
+        private void carregarCarrinho() {
 
             int[] ids = new int[]{1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25};
 
+            int[] grau = new int[]{2,2,2,1,2,0,0,0,0,2,2,2,1,2,2,2,2,1,2,2,2,2,1,2,2};
+
             int[] fotos = new int[]{R.drawable.usuario,R.drawable.usuario,R.drawable.usuario,R.drawable.usuario,R.drawable.usuario,R.drawable.usuario,R.drawable.usuario,R.drawable.usuario,R.drawable.usuario,R.drawable.usuario,R.drawable.usuario,R.drawable.usuario,R.drawable.usuario,R.drawable.usuario,R.drawable.usuario,R.drawable.usuario,R.drawable.usuario,R.drawable.usuario,R.drawable.usuario,R.drawable.usuario,R.drawable.usuario,R.drawable.usuario,R.drawable.usuario,R.drawable.usuario,R.drawable.usuario};
 
-            String[] nome = new String[]{"Aguinaldo Parracho",
-                    "Alípio Peralta",
-                    "Amandio Lamego",
-                    "Arachane Tristán",
-                    "Astolfo Rangel",
-                    "Basilio Hierro",
-                    "Capitolina Lins",
-                    "Conrado Menna",
-                    "Cristiano Almeyda",
-                    "Cândida Bulhosa",
-                    "Floripes Campello",
-                    "Flávio Mourato",
-                    "Flávio Tabosa",
-                    "Fábia Siebra",
-                    "Ismael Marreiro",
-                    "Josefa Beltrán",
-                    "Lurdes Santana",
-                    "Magda Baía",
-                    "Marli Domingues",
-                    "Maura Gomes",
-                    "Melinda Amaro",
-                    "Micael Mexia",
-                    "Micaela Godoi",
-                    "Olívia Muniz",
-                    "Simão Cordeiro"};
+            String[] nome = new String[]{"João",
+                    "Carlos",
+                    "Beto",
+                    "Miguel",
+                    "Samuel",
+                    "notificacao",
+                    "Lucas",
+                    "Alberto",
+                    "Jesus",
+                    "Silva",
+                    "Renato",
+                    "Oswaldo",
+                    "notificacao",
+                    "Renan",
+                    "Marcelo",
+                    "Kleber",
+                    "Ricardo",
+                    "Celso",
+                    "Vitas",
+                    "notificacao",
+                    "Mutley",
+                    "Ana",
+                    "Oséias",
+                    "notificacao",
+                    "Neymar"};
 
-            String[] descricao = new String[]{"Ford 150","24250 - Volks",
-                    "8150 - Volks",
-                    "710 - Mercedes",
-                    "9150 - Volks",
-                    "13180 - Volks",
-                    "FH 460 - Volvo",
-                    "Atego 2425 - Mercedes",
-                    "Accelo 815 - Mercedes",
-                    "VM 260 - Volvo",
-                    "R440 - Scania",
-                    "Ford 150","24250 - Volks",
-                    "8150 - Volks",
-                    "710 - Mercedes",
-                    "9150 - Volks",
-                    "13180 - Volks",
-                    "FH 460 - Volvo",
-                    "Atego 2425 - Mercedes",
-                    "Accelo 815 - Mercedes",
-                    "VM 260 - Volvo",
-                    "R440 - Scania",
-                    "VM 260 - Volvo",
-                    "R440 - Scania",
-                    "Ford 150","24250 - Volks",
-                    "8150 - Volks",
-                    "710 - Mercedes",
-                    "9150 - Volks",
-                    "13180 - Volks",
-                    "FH 460 - Volvo"};
+            String[] descricao = new String[]{"Cliente JOÃO solicitou uma nova carga",
+                    "Motorista CARLOS concluiu entrega",
+                    "Motorista BETO saiu para entrega",
+                    "Administrador MIGUEL atribuiu nova tarefa para você",
+                    "Cliente SAMUEL solicitou uma nova carga",
+                    "Pedido 7123575 em separação",
+                    "Cliente LUCAS solicitou uma nova carga",
+                    "Motorista ALBERTO concluiu entrega",
+                    "Motorista JESUS saiu para entrega",
+                    "Administrador SILVA atribuiu nova tarefa para você",
+                    "Cliente RENATO solicitou uma nova carga",
+                    "Motorista OSWALDO concluiu entrega",
+                    "Pedido 7123575 entregue",
+                    "Motorista RENAN saiu para entrega",
+                    "Administrador MARCELO atribuiu nova tarefa para você",
+                    "Cliente KLEBER solicitou uma nova carga",
+                    "Motorista RICARDO concluiu entrega",
+                    "Motorista CELSO saiu para entrega",
+                    "Administrador VITAS atribuiu nova tarefa para você",
+                    "Pedido 7123542 cancelado",
+                    "Cliente MUTLEY solicitou uma nova carga",
+                    "Motorista ANA concluiu entrega",
+                    "Motorista OSÉIAS saiu para entrega",
+                    "Pedido 7123575 em trânsito",
+                    "Cliente NEYMAR solicitou uma nova carga"};
 
-
-            mListPesquisa = new ArrayList<>();
-            mListPesquisaJSON = new ArrayList<>();
+            mListTarefas = new ArrayList<>();
+            mListTarefasJSON = new ArrayList<>();
 
             for (int i = 0; i < ids.length; i++) {
-
-//                String nomeString = "."+nome[i % nome.length]+".";
-//                String descricaoString = "."+descricao[i % descricao.length]+".";
-
-//                if (pesquisa.matches(nomeString) || pesquisa.matches(descricaoString)) {
-                    Pesquisa p = new Pesquisa(ids[i % ids.length], fotos[i % fotos.length], nome[i % nome.length], descricao[i % descricao.length]);
-                    mListPesquisaJSON.add(p);
-//                }
+                Pesquisa p = new Pesquisa(ids[i % ids.length], fotos[i % fotos.length], nome[i % nome.length], descricao[i % descricao.length]);
+                mListTarefasJSON.add(p);
             }
 
             ativ = Constants.SUCESSO;
@@ -612,7 +495,7 @@ public class PesquisarFragment extends Fragment implements RecyclerViewOnClickLi
                 (dialog, which) -> {
                     dialog.dismiss();
 
-                    asyncPesquisa = new CarregarItensPesquisa(v, editTextPesquisa.getText().toString()).execute();
+                    asyncTarefas = new CarregarItensTarefa(v).execute();
 
                 });
         alertDialog.setCancelable(false);
@@ -633,7 +516,7 @@ public class PesquisarFragment extends Fragment implements RecyclerViewOnClickLi
         alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, getString(R.string.tentar_novamente),
                 (dialog, which) -> {
                     dialog.dismiss();
-                    asyncPesquisa = new CarregarItensPesquisa(v, editTextPesquisa.getText().toString()).execute();
+                    asyncTarefas = new CarregarItensTarefa(v).execute();
 
                 });
         alertDialog.setCancelable(true);
@@ -649,5 +532,4 @@ public class PesquisarFragment extends Fragment implements RecyclerViewOnClickLi
 
         FancyToast.makeText(getContext(), msg, FancyToast.LENGTH_SHORT, FancyToast.ERROR, false).show();
     }
-
 }

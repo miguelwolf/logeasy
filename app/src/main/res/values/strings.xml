@@ -3,7 +3,7 @@
     <string name="title_home">Início</string>
     <string name="title_search">Procurar</string>
     <string name="title_task">Tarefas</string>
-    <string name="title_agregados">Agregados</string>
+    <string name="title_empresa">Empresa</string>
     <string name="title_perfil">Perfil</string>
     <string name="title_activity_maps">Map</string>
 
@@ -36,6 +36,15 @@
     <string name="error_field_required">Campo obrigatório</string>
     <string name="permission_rationale">"O aplicativo precisa da permissão para fornecer dicas de e-mail."
     </string>
+
+    <!-- Pesquisa -->
+    <string name="pesquisar">Pesquisar</string>
+    <string name="sem_resultados">Não há resultados</string>
+    <string name="agregados">Agregados</string>
+    <string name="clientes">Clientes</string>
+    <string name="caminhoneiros">Caminhoneiros</string>
+    <string name="caminhoes">Caminhões</string>
+    <string name="filtrar">Filtrar</string>
 
     <!-- Perfil -->
     <string name="editar_perfil">Editar Perfil</string>
@@ -72,8 +81,19 @@
     <string name="vin">VIN</string>
     <string name="ano">Ano</string>
     <string name="alterar">Alterar</string>
-    <string name="pesquisar">Pesquisar</string>
-    <string name="sem_resultados">Não há resultados</string>
+
+    <!-- Empresa -->
+    <string name="cnpj">CNPJ</string>
+    <string name="estado">Estado</string>
+
+
+    <string name="ok">Ok</string>
+    <string name="cancel">Cancelar</string>
+    <string name="adicionar">Adicionar</string>
+    <string name="vazio">Vazio</string>
+
+
+    <string name="sobre">Sobre</string>
 
 
     <string name="google_maps_key">AIzaSyDFEEhEXtvfXVwQZUT6YlaDlSYIMX8X5kw </string>

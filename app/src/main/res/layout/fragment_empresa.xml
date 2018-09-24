@@ -1,0 +1,180 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="br.com.miguelwolf.logeasy.view.EmpresaFragment">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ScrollView
+            android:id="@+id/empresa_sv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/empresa_iv_foto"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/warehouse" />
+
+                <android.support.constraint.ConstraintLayout
+                    android:id="@+id/empresa_view_background_black_transparent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/preto_transparente"
+                    app:layout_constraintBottom_toBottomOf="@+id/empresa_iv_foto"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent">
+
+                    <TextView
+                        android:id="@+id/empresa_tv_titulo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:text="Armazém TMC"
+                        android:textColor="@color/textWhite"
+                        android:textSize="@dimen/titulo_X"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/empresa_iv_agregados_qtd"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/empresa_view_background_black_transparent" />
+
+                <ImageView
+                    android:id="@+id/empresa_iv_agregados_qtd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginTop="8dp"
+                    android:src="@drawable/ic_group"
+                    app:layout_constraintEnd_toStartOf="@+id/empresa_tv_agregados_qtd"
+                    app:layout_constraintTop_toTopOf="@+id/empresa_view_background_black_transparent" />
+
+                <TextView
+                    android:id="@+id/empresa_tv_agregados_qtd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:text="50"
+                    android:textColor="@color/textWhite"
+                    android:textSize="@dimen/titulo"
+                    app:layout_constraintBottom_toBottomOf="@+id/empresa_iv_agregados_qtd"
+                    app:layout_constraintEnd_toEndOf="@+id/empresa_view_background_black_transparent"
+                    app:layout_constraintTop_toTopOf="@+id/empresa_iv_agregados_qtd" />
+
+                    <ImageView
+                        android:id="@+id/empresa_iv_caminhoes_qtd"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginTop="8dp"
+                        android:src="@drawable/ic_local_shipping"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/empresa_tv_caminhoes_qtd"
+                        app:layout_constraintTop_toBottomOf="@+id/empresa_iv_agregados_qtd" />
+
+                <TextView
+                    android:id="@+id/empresa_tv_caminhoes_qtd"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:text="25"
+                    android:textColor="@color/textWhite"
+                    android:textSize="@dimen/titulo"
+                    app:layout_constraintBottom_toBottomOf="@+id/empresa_iv_caminhoes_qtd"
+                    app:layout_constraintEnd_toEndOf="@+id/empresa_view_background_black_transparent"
+                    app:layout_constraintStart_toEndOf="@+id/empresa_iv_agregados_qtd"
+                    app:layout_constraintTop_toTopOf="@+id/empresa_iv_caminhoes_qtd"
+                    app:layout_constraintVertical_bias="0.6" />
+
+                </android.support.constraint.ConstraintLayout>
+
+
+                <android.support.design.widget.FloatingActionButton
+                    android:id="@+id/emrpesa_fab_photo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:src="@drawable/ic_baseline_photo_camera_24px"
+                    android:tint="@color/textWhite"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="@+id/empresa_view_background_black_transparent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/empresa_view_background_black_transparent" />
+
+                <android.support.v7.widget.Toolbar
+                    android:id="@+id/empresa_toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:layout_weight="1"
+                    android:background="?android:attr/windowBackground"
+                    android:contentInsetEnd="0dp"
+                    android:contentInsetLeft="0dp"
+                    android:contentInsetRight="0dp"
+                    android:contentInsetStart="0dp"
+                    android:theme="@style/AppTheme.PopupOverlay"
+                    app:contentInsetEnd="0dp"
+                    app:contentInsetLeft="0dp"
+                    app:contentInsetRight="0dp"
+                    app:contentInsetStart="0dp"
+                    app:layout_collapseMode="pin"
+                    app:layout_constraintTop_toBottomOf="@+id/empresa_view_background_black_transparent">
+
+                    <android.support.design.widget.TabLayout
+                        android:id="@+id/empresa_tabs"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/background_light"
+                        app:tabGravity="fill"
+                        app:tabIndicatorColor="@color/colorPrimary"
+                        app:tabMaxWidth="0dp"
+                        app:tabMode="fixed" />
+
+                </android.support.v7.widget.Toolbar>
+
+
+            </android.support.constraint.ConstraintLayout>
+
+
+        </ScrollView>
+
+        <Button
+            android:id="@+id/carro_btn_alterar"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/button_fab_height"
+            android:layout_marginBottom="16dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:background="@drawable/button_ripple_back_blue"
+            android:paddingEnd="@dimen/button_fab_padding"
+            android:paddingStart="@dimen/button_fab_padding"
+            android:text="@string/adicionar"
+            android:textColor="@color/textWhite"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/empresa_view_pager"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/empresa_sv" />
+
+    </android.support.constraint.ConstraintLayout>
+
+
+</FrameLayout>
