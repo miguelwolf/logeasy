@@ -79,8 +79,8 @@ public class EmpresaFragment extends Fragment {
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getFragmentManager());
-        adapter.addFrag(new EmpresaSlideFragment(), getResources().getString(R.string.agregados));
-        adapter.addFrag(new EmpresaSlideFragment(), getResources().getString(R.string.caminhoes));
+        adapter.addFrag(new EmpresaAgregadosSlideFragment(), getResources().getString(R.string.agregados));
+        adapter.addFrag(new EmpresaCaminhoesSlideFragment(), getResources().getString(R.string.caminhoes));
         adapter.addFrag(new EmpresaSobreSlideFragment(), getResources().getString(R.string.sobre));
         viewPager.setAdapter(adapter);
     }

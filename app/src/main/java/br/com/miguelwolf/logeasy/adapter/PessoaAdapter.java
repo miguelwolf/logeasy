@@ -13,15 +13,15 @@ import java.util.List;
 
 import br.com.miguelwolf.logeasy.R;
 import br.com.miguelwolf.logeasy.interfaces.RecyclerViewOnClickListenerHack;
-import br.com.miguelwolf.logeasy.model.Pesquisa;
+import br.com.miguelwolf.logeasy.model.Pessoa;
 
-public class PesquisaAdapter extends RecyclerView.Adapter<PesquisaAdapter.MyViewHolder> {
+public class PessoaAdapter extends RecyclerView.Adapter<PessoaAdapter.MyViewHolder> {
 
-    private List<Pesquisa> mList;
+    private List<Pessoa> mList;
     private LayoutInflater mLayoutInflater;
     private RecyclerViewOnClickListenerHack mRecyclerViewOnClickListenerHack;
 
-    public PesquisaAdapter(Context c, List<Pesquisa> l) {
+    public PessoaAdapter(Context c, List<Pessoa> l) {
         mList = l;
         mLayoutInflater = (LayoutInflater) c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
@@ -31,7 +31,7 @@ public class PesquisaAdapter extends RecyclerView.Adapter<PesquisaAdapter.MyView
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        View v = mLayoutInflater.inflate(R.layout.item_pesquisa, parent, false);
+        View v = mLayoutInflater.inflate(R.layout.item_pessoa, parent, false);
         MyViewHolder myViewHolder = new MyViewHolder(v);
 
         return myViewHolder;
@@ -41,7 +41,7 @@ public class PesquisaAdapter extends RecyclerView.Adapter<PesquisaAdapter.MyView
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         holder.ivUsuario.setImageResource(mList.get(position).getFoto());
         holder.tvNome.setText(mList.get(position).getNome());
-        holder.tvDescricao.setText(mList.get(position).getIdentificacao());
+        holder.tvDescricao.setText(mList.get(position).getCarro().getMarca() + " - " + mList.get(position).getCarro().getModelo());
     }
 
     @Override
@@ -49,7 +49,7 @@ public class PesquisaAdapter extends RecyclerView.Adapter<PesquisaAdapter.MyView
         return mList.size();
     }
 
-    public void addListItem(Pesquisa p, int position){
+    public void addListItem(Pessoa p, int position){
         mList.add(p);
         notifyItemInserted(position);
     }
@@ -76,9 +76,9 @@ public class PesquisaAdapter extends RecyclerView.Adapter<PesquisaAdapter.MyView
         public MyViewHolder(View itemView) {
             super(itemView);
 
-            ivUsuario = itemView.findViewById(R.id.item_pesquisa_iv_foto);
-            tvNome = itemView.findViewById(R.id.item_pesquisa_tv_marca_modelo);
-            tvDescricao = itemView.findViewById(R.id.item_pesquisa_tv_descricao);
+            ivUsuario = itemView.findViewById(R.id.item_pessoa_iv_foto);
+            tvNome = itemView.findViewById(R.id.item_pessoa_tv_marca_modelo);
+            tvDescricao = itemView.findViewById(R.id.item_pessoa_tv_descricao);
 
             itemView.setOnClickListener(this);
 

@@ -6,222 +6,271 @@
     android:layout_height="match_parent"
     tools:context=".view.TarefaSlideFragment">
 
-    <ScrollView
+    <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <android.support.constraint.ConstraintLayout
+        <ScrollView
+            android:id="@+id/empresa_sobre_slide_nsv"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-            <TextView
-                android:id="@+id/empresa_sobre_slide_tv_nome"
-                android:layout_width="wrap_content"
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:text="@string/nome"
-                android:textSize="@dimen/titulo"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@+id/empresa_sobre_slide_et_cep"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/empresa_sobre_slide_et_cep" />
+                android:layout_marginEnd="8dp">
 
-            <EditText
-                android:id="@+id/empresa_sobre_slide_et_nome"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="16dp"
-                android:background="@null"
-                android:inputType="text"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toEndOf="@+id/empresa_sobre_slide_tv_cep"
-                app:layout_constraintTop_toBottomOf="@+id/empresa_sobre_slide_et_estado" />
+                <TextView
+                    android:id="@+id/empresa_sobre_slide_tv_nome"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="@string/nome"
+                    android:textSize="@dimen/titulo"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/empresa_sobre_slide_et_nome"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/empresa_sobre_slide_et_nome" />
 
-            <TextView
-                android:id="@+id/empresa_sobre_slide_tv_CNPJ"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:text="@string/cnpj"
-                android:textSize="@dimen/titulo"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@+id/empresa_sobre_slide_et_CNPJ"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/empresa_sobre_slide_et_CNPJ" />
+                <EditText
+                    android:id="@+id/empresa_sobre_slide_et_nome"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="8dp"
+                    android:background="@null"
+                    android:focusable="false"
+                    android:inputType="text"
+                    android:text="Armazém TMC"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/empresa_sobre_slide_guideline"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            <EditText
-                android:id="@+id/empresa_sobre_slide_et_CNPJ"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="16dp"
-                android:background="@null"
-                android:inputType="text"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/empresa_sobre_slide_tv_CNPJ"
-                app:layout_constraintTop_toBottomOf="@+id/empresa_sobre_slide_et_cep" />
+                <TextView
+                    android:id="@+id/empresa_sobre_slide_tv_CNPJ"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="@string/cnpj"
+                    android:textSize="@dimen/titulo"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/empresa_sobre_slide_et_CNPJ"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/empresa_sobre_slide_et_CNPJ" />
 
-            <TextView
-                android:id="@+id/empresa_sobre_slide_tv_endereco"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:text="@string/endereco"
-                android:textSize="@dimen/titulo"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@+id/empresa_sobre_slide_et_endereco"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/empresa_sobre_slide_et_endereco" />
+                <EditText
+                    android:id="@+id/empresa_sobre_slide_et_CNPJ"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="8dp"
+                    android:background="@null"
+                    android:focusable="false"
+                    android:inputType="text"
+                    android:text="95419926000122"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/empresa_sobre_slide_guideline"
+                    app:layout_constraintTop_toBottomOf="@+id/empresa_sobre_slide_et_nome" />
 
-            <EditText
-                android:id="@+id/empresa_sobre_slide_et_endereco"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="16dp"
-                android:background="@null"
-                android:inputType="text"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/empresa_sobre_slide_tv_endereco"
-                app:layout_constraintTop_toBottomOf="@+id/empresa_sobre_slide_et_CNPJ" />
+                <TextView
+                    android:id="@+id/empresa_sobre_slide_tv_endereco"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="@string/endereco"
+                    android:textSize="@dimen/titulo"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/empresa_sobre_slide_et_endereco"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/empresa_sobre_slide_et_endereco" />
 
-            <TextView
-                android:id="@+id/empresa_sobre_slide_tv_numero"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:text="@string/numero"
-                android:textSize="@dimen/titulo"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@+id/empresa_sobre_slide_et_numero"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/empresa_sobre_slide_et_numero" />
+                <EditText
+                    android:id="@+id/empresa_sobre_slide_et_endereco"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="8dp"
+                    android:background="@null"
+                    android:focusable="false"
+                    android:inputType="text"
+                    android:text="Av. São Sebastião"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/empresa_sobre_slide_guideline"
+                    app:layout_constraintTop_toBottomOf="@+id/empresa_sobre_slide_et_CNPJ" />
 
-            <EditText
-                android:id="@+id/empresa_sobre_slide_et_numero"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="16dp"
-                android:background="@null"
-                android:inputType="text"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toEndOf="@+id/empresa_sobre_slide_tv_numero"
-                app:layout_constraintTop_toBottomOf="@+id/empresa_sobre_slide_et_endereco" />
+                <TextView
+                    android:id="@+id/empresa_sobre_slide_tv_numero"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="@string/numero"
+                    android:textSize="@dimen/titulo"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/empresa_sobre_slide_et_numero"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/empresa_sobre_slide_et_numero" />
 
-            <TextView
-                android:id="@+id/empresa_sobre_slide_tv_bairro"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:text="@string/bairro"
-                android:textSize="@dimen/titulo"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@+id/empresa_sobre_slide_et_bairro"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/empresa_sobre_slide_et_bairro" />
+                <EditText
+                    android:id="@+id/empresa_sobre_slide_et_numero"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="8dp"
+                    android:background="@null"
+                    android:focusable="false"
+                    android:inputType="text"
+                    android:text="105"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/empresa_sobre_slide_guideline"
+                    app:layout_constraintTop_toBottomOf="@+id/empresa_sobre_slide_et_endereco" />
 
-            <EditText
-                android:id="@+id/empresa_sobre_slide_et_bairro"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="16dp"
-                android:background="@null"
-                android:inputType="text"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/empresa_sobre_slide_tv_bairro"
-                app:layout_constraintTop_toBottomOf="@+id/empresa_sobre_slide_et_numero" />
+                <TextView
+                    android:id="@+id/empresa_sobre_slide_tv_bairro"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="@string/bairro"
+                    android:textSize="@dimen/titulo"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/empresa_sobre_slide_et_bairro"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/empresa_sobre_slide_et_bairro" />
 
-            <TextView
-                android:id="@+id/empresa_sobre_slide_tv_cidade"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:text="@string/cidade"
-                android:textSize="@dimen/titulo"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@+id/empresa_sobre_slide_et_cidade"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/empresa_sobre_slide_et_cidade" />
+                <EditText
+                    android:id="@+id/empresa_sobre_slide_et_bairro"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="8dp"
+                    android:background="@null"
+                    android:focusable="false"
+                    android:inputType="text"
+                    android:text="Cantizani"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/empresa_sobre_slide_guideline"
+                    app:layout_constraintTop_toBottomOf="@+id/empresa_sobre_slide_et_numero" />
 
-            <EditText
-                android:id="@+id/empresa_sobre_slide_et_cidade"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="16dp"
-                android:background="@null"
-                android:inputType="text"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/empresa_sobre_slide_tv_cidade"
-                app:layout_constraintTop_toBottomOf="@+id/empresa_sobre_slide_et_bairro" />
+                <TextView
+                    android:id="@+id/empresa_sobre_slide_tv_cidade"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="@string/cidade"
+                    android:textSize="@dimen/titulo"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/empresa_sobre_slide_et_cidade"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/empresa_sobre_slide_et_cidade" />
 
-            <TextView
-                android:id="@+id/empresa_sobre_slide_tv_estado"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:text="@string/estado"
-                android:textSize="@dimen/titulo"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@+id/empresa_sobre_slide_et_estado"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/empresa_sobre_slide_et_estado" />
+                <EditText
+                    android:id="@+id/empresa_sobre_slide_et_cidade"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="8dp"
+                    android:background="@null"
+                    android:focusable="false"
+                    android:inputType="text"
+                    android:text="Piraju"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/empresa_sobre_slide_guideline"
+                    app:layout_constraintTop_toBottomOf="@+id/empresa_sobre_slide_et_bairro" />
 
-            <EditText
-                android:id="@+id/empresa_sobre_slide_et_estado"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="16dp"
-                android:background="@null"
-                android:inputType="text"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toEndOf="@+id/empresa_sobre_slide_tv_estado"
-                app:layout_constraintTop_toBottomOf="@+id/empresa_sobre_slide_et_cidade" />
+                <TextView
+                    android:id="@+id/empresa_sobre_slide_tv_estado"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="@string/estado"
+                    android:textSize="@dimen/titulo"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/empresa_sobre_slide_et_estado"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/empresa_sobre_slide_et_estado" />
 
-            <TextView
-                android:id="@+id/empresa_sobre_slide_tv_cep"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:text="@string/CEP"
-                android:textSize="@dimen/titulo"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@+id/empresa_sobre_slide_et_nome"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/empresa_sobre_slide_et_nome" />
+                <EditText
+                    android:id="@+id/empresa_sobre_slide_et_estado"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="8dp"
+                    android:background="@null"
+                    android:focusable="false"
+                    android:inputType="text"
+                    android:text="SP"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/empresa_sobre_slide_guideline"
+                    app:layout_constraintTop_toBottomOf="@+id/empresa_sobre_slide_et_cidade" />
 
-            <EditText
-                android:id="@+id/empresa_sobre_slide_et_cep"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="16dp"
-                android:background="@null"
-                android:inputType="text"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toEndOf="@+id/empresa_sobre_slide_tv_nome"
-                app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:id="@+id/empresa_sobre_slide_tv_cep"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="@string/CEP"
+                    android:textSize="@dimen/titulo"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/empresa_sobre_slide_et_cep"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/empresa_sobre_slide_et_cep" />
 
-        </android.support.constraint.ConstraintLayout>
+                <EditText
+                    android:id="@+id/empresa_sobre_slide_et_cep"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="16dp"
+                    android:background="@null"
+                    android:focusable="false"
+                    android:inputType="text"
+                    android:text="18800-000"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/empresa_sobre_slide_guideline"
+                    app:layout_constraintTop_toBottomOf="@+id/empresa_sobre_slide_et_estado" />
 
-    </ScrollView>
+                <android.support.constraint.Guideline
+                    android:id="@+id/empresa_sobre_slide_guideline"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.22" />
+
+            </android.support.constraint.ConstraintLayout>
+
+        </ScrollView>
+
+        <Button
+            android:id="@+id/empresa_sobre_slide_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/button_fab_height"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/button_ripple_back_blue"
+            android:paddingStart="@dimen/button_fab_padding"
+            android:paddingEnd="@dimen/button_fab_padding"
+            android:text="@string/alterar"
+            android:textColor="@color/textWhite"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </android.support.constraint.ConstraintLayout>
 
 </FrameLayout>

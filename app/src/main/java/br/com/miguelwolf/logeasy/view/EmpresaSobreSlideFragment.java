@@ -6,30 +6,30 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
+import android.widget.Button;
 import android.widget.ProgressBar;
-import android.widget.TextView;
+import android.widget.ScrollView;
 
 import com.shashank.sony.fancytoastlib.FancyToast;
 
-import java.util.ArrayList;
-
 import br.com.miguelwolf.logeasy.R;
-import br.com.miguelwolf.logeasy.adapter.TarefaAdapter;
-import br.com.miguelwolf.logeasy.interfaces.RecyclerViewOnClickListenerHack;
-import br.com.miguelwolf.logeasy.model.Pesquisa;
 import br.com.miguelwolf.logeasy.utils.Constants;
 
 
 public class EmpresaSobreSlideFragment extends Fragment  {
 
     private AsyncTask asyncTarefas;
+
+
+    private Button btnAlterar;
+    
 
     private int ativ;
 
@@ -65,7 +65,10 @@ public class EmpresaSobreSlideFragment extends Fragment  {
 
         this.view = view;
 
-//        asyncTarefas = new CarregarItensTarefa(view).execute();
+        btnAlterar = view.findViewById(R.id.empresa_sobre_slide_btn);
+
+
+//        asyncTarefas = new CarregarAgregados(view).execute();
 
         return view;
     }
@@ -164,7 +167,7 @@ public class EmpresaSobreSlideFragment extends Fragment  {
 
                             try {
 
-//                                mListTarefas = getSetTarefaList(15);
+//                                mListTarefas = getSetCarroList(15);
 //
 //                                adapter = new TarefaAdapter(getActivity(), mListTarefas);
 //                                adapter.setmRecyclerViewOnClickListenerHack(EmpresaSobreSlideFragment.this);

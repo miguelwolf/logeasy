@@ -15,6 +15,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,20 +26,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.miguelwolf.logeasy.R;
-import br.com.miguelwolf.logeasy.adapter.TarefaAdapter;
+import br.com.miguelwolf.logeasy.adapter.CaminhaoAdapter;
 import br.com.miguelwolf.logeasy.interfaces.RecyclerViewOnClickListenerHack;
-import br.com.miguelwolf.logeasy.model.Pesquisa;
+import br.com.miguelwolf.logeasy.model.Carro;
 import br.com.miguelwolf.logeasy.utils.Constants;
 
 
-public class EmpresaSlideFragment extends Fragment implements RecyclerViewOnClickListenerHack, SwipeRefreshLayout.OnRefreshListener {
+public class EmpresaCaminhoesSlideFragment extends Fragment implements RecyclerViewOnClickListenerHack, SwipeRefreshLayout.OnRefreshListener {
 
-    private AsyncTask asyncTarefas;
+    private AsyncTask asyncCaminhao;
+
+
+    private Button btnAdicionar;
+
 
     private int ativ;
 
-    private List<Pesquisa> mListTarefas = new ArrayList<>();
-    private List<Pesquisa> mListTarefasJSON;
+
+    private List<Carro> mListCaminhao = new ArrayList<>();
+    private List<Carro> mListCaminhaoJSON;
 
     private OnFragmentInteractionListener mListener;
 
@@ -48,16 +54,16 @@ public class EmpresaSlideFragment extends Fragment implements RecyclerViewOnClic
 
     private SwipeRefreshLayout mSwipeRefreshLayout;
 
-    private TarefaAdapter adapter;
+    private CaminhaoAdapter adapterCaminhao;
 
     private View view;
 
 
-    public EmpresaSlideFragment() {}
+    public EmpresaCaminhoesSlideFragment() {}
 
 
-    public static EmpresaSlideFragment newInstance() {
-        EmpresaSlideFragment fragment = new EmpresaSlideFragment();
+    public static EmpresaCaminhoesSlideFragment newInstance() {
+        EmpresaCaminhoesSlideFragment fragment = new EmpresaCaminhoesSlideFragment();
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;
@@ -80,26 +86,51 @@ public class EmpresaSlideFragment extends Fragment implements RecyclerViewOnClic
 
         this.view = view;
 
+
+        btnAdicionar = view.findViewById(R.id.tarefa_slide_btn);
+
+
         mRecyclerView = view.findViewById(R.id.tarefa_slide_rv_list);
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
+
+                switch (newState) {
+                    case RecyclerView.SCROLL_STATE_IDLE:
+                        System.out.println("The RecyclerView is not scrolling");
+                        break;
+
+                    case RecyclerView.SCROLL_STATE_DRAGGING:
+                        System.out.println("Scrolling now");
+                        btnAdicionar.animate().setDuration(150).translationY(120);
+                        break;
+
+                    case RecyclerView.SCROLL_STATE_SETTLING:
+                        System.out.println("Scroll Settling");
+                        break;
+
+                }
+
             }
 
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
 
-                LinearLayoutManager llm = (LinearLayoutManager) mRecyclerView.getLayoutManager();
-                TarefaAdapter adapter = (TarefaAdapter) mRecyclerView.getAdapter();
+                if (dy < 0) {
+                    btnAdicionar.animate().setDuration(250).translationY(0);
+                }
 
-                if (mListTarefas.size() == llm.findLastCompletelyVisibleItemPosition() + 1) {
-                    List<Pesquisa> listAux = getSetTarefaList(10);
+                LinearLayoutManager llm = (LinearLayoutManager) mRecyclerView.getLayoutManager();
+                CaminhaoAdapter adapter = (CaminhaoAdapter) mRecyclerView.getAdapter();
+
+                if (mListCaminhao.size() == llm.findLastCompletelyVisibleItemPosition() + 1) {
+                    List<Carro> listAux = getSetCarroList(10);
 
                     for (int i = 0; i < listAux.size(); i++) {
-                        adapter.addListItem(listAux.get(i), mListTarefas.size());
+                        adapter.addListItem(listAux.get(i), mListCaminhao.size());
                     }
                 }
 
@@ -115,7 +146,7 @@ public class EmpresaSlideFragment extends Fragment implements RecyclerViewOnClic
         mSwipeRefreshLayout.setOnRefreshListener(this);
 
 
-        asyncTarefas = new CarregarItensTarefa(view).execute();
+        asyncCaminhao = new CarregarCaminhoes(view).execute();
 
         return view;
     }
@@ -131,7 +162,7 @@ public class EmpresaSlideFragment extends Fragment implements RecyclerViewOnClic
     @Override
     public void onResume() {
         super.onResume();
-        asyncTarefas = new CarregarItensTarefa(view).execute();
+        asyncCaminhao = new CarregarCaminhoes(view).execute();
     }
 
 
@@ -161,20 +192,46 @@ public class EmpresaSlideFragment extends Fragment implements RecyclerViewOnClic
      * @param qtd, utlizado para definir o tanto de elementos eu quero exibir, 5 itens, 9 itens, 25 itens.
      * @return
      */
-    public List<Pesquisa> getSetTarefaList(int qtd){
+    public List<Carro> getSetCarroList(int qtd){
 
-        List<Pesquisa> listAux = new ArrayList<>();
+        List<Carro> listAux = new ArrayList<>();
 
         int posicaoPartida = 0;
 
-        if (mListTarefas.size() != 0) {
-            posicaoPartida = mListTarefas.size();
+        if (mListCaminhao.size() != 0) {
+            posicaoPartida = mListCaminhao.size();
         }
 
         qtd += posicaoPartida;
 
-        for (int i = posicaoPartida; i < qtd && i < mListTarefasJSON.size(); i++) {
-            listAux.add(mListTarefasJSON.get(i));
+        for (int i = posicaoPartida; i < qtd && i < mListCaminhaoJSON.size(); i++) {
+            listAux.add(mListCaminhaoJSON.get(i));
+        }
+
+        return (listAux);
+
+    }
+
+
+    /**
+     * Método para geração de itens para a lista de pesquisa
+     * @param qtd, utlizado para definir o tanto de elementos eu quero exibir, 5 itens, 9 itens, 25 itens.
+     * @return
+     */
+    public List<Carro> getSetCaminhoesList(int qtd){
+
+        List<Carro> listAux = new ArrayList<>();
+
+        int posicaoPartida = 0;
+
+        if (mListCaminhao.size() != 0) {
+            posicaoPartida = mListCaminhao.size();
+        }
+
+        qtd += posicaoPartida;
+
+        for (int i = posicaoPartida; i < qtd && i < mListCaminhaoJSON.size(); i++) {
+            listAux.add(mListCaminhaoJSON.get(i));
         }
 
         return (listAux);
@@ -184,21 +241,20 @@ public class EmpresaSlideFragment extends Fragment implements RecyclerViewOnClic
 
     @Override
     public void onClickListener(View v, int position) {
-        Toast.makeText(getActivity(), "Position: "+position, Toast.LENGTH_SHORT).show();
 
-        adapter = (TarefaAdapter) mRecyclerView.getAdapter();
+        adapterCaminhao = (CaminhaoAdapter) mRecyclerView.getAdapter();
 
-        FragmentTransaction fragmentPerfil = getActivity().getSupportFragmentManager().beginTransaction();
-        fragmentPerfil.replace(R.id.main_frame, new PerfilFragment());
-        fragmentPerfil.addToBackStack(null);
-        fragmentPerfil.commit();
+        FragmentTransaction fragmentCaminhao = getActivity().getSupportFragmentManager().beginTransaction();
+        fragmentCaminhao.replace(R.id.main_frame, new CarroFragment());
+        fragmentCaminhao.addToBackStack(null);
+        fragmentCaminhao.commit();
 
         //adapter.removeListItem(position);
     }
 
     @Override
     public void onRefresh() {
-        asyncTarefas = new CarregarItensTarefa(view).execute();
+        asyncCaminhao = new CarregarCaminhoes(view).execute();
     }
 
 
@@ -209,12 +265,12 @@ public class EmpresaSlideFragment extends Fragment implements RecyclerViewOnClic
 
 
     @SuppressLint("StaticFieldLeak")
-    private class CarregarItensTarefa extends AsyncTask<Void, Void, Void> {
+    private class CarregarCaminhoes extends AsyncTask<Void, Void, Void> {
 
         private ProgressBar progressBar;
         private View v;
 
-        public CarregarItensTarefa(View v) {
+        public CarregarCaminhoes(View v) {
             this.v = v;
         }
 
@@ -238,7 +294,7 @@ public class EmpresaSlideFragment extends Fragment implements RecyclerViewOnClic
 
             try {
 
-                carregarCarrinho();
+                carregarCaminhoes();
 
             } catch (NullPointerException npe) {
                 ativ = Constants.ERRO_APP;
@@ -261,15 +317,15 @@ public class EmpresaSlideFragment extends Fragment implements RecyclerViewOnClic
 
                             try {
 
-                                mListTarefas = getSetTarefaList(15);
+                                mListCaminhao = getSetCaminhoesList(15);
 
-                                adapter = new TarefaAdapter(getActivity(), mListTarefas);
-                                adapter.setmRecyclerViewOnClickListenerHack(EmpresaSlideFragment.this);
+                                adapterCaminhao = new CaminhaoAdapter(getContext(), mListCaminhao);
+                                adapterCaminhao.setmRecyclerViewOnClickListenerHack(EmpresaCaminhoesSlideFragment.this);
 
 
                                 TextView tv = v.findViewById(R.id.tarefa_slide_tv_sem_tarefas);
 
-                                if (mListTarefas.size() == 0)
+                                if (mListCaminhao.size() == 0)
                                     tv.setVisibility(View.VISIBLE);
                                 else
                                     tv.setVisibility(View.GONE);
@@ -278,12 +334,14 @@ public class EmpresaSlideFragment extends Fragment implements RecyclerViewOnClic
                                 LinearLayoutManager llm = new LinearLayoutManager(getActivity());
                                 llm.setOrientation(LinearLayoutManager.VERTICAL);
                                 mRecyclerView.setLayoutManager(llm);
-                                mRecyclerView.setAdapter(adapter);
+                                mRecyclerView.setAdapter(adapterCaminhao);
                                 mRecyclerView.getAdapter().notifyDataSetChanged();
 
                                 if (mSwipeRefreshLayout.isRefreshing()) {
                                     mSwipeRefreshLayout.setRefreshing(false);
                                 }
+
+                                btnAdicionar.animate().setDuration(150).translationY(0);
 
 
                             } catch (NullPointerException | IndexOutOfBoundsException npe) {
@@ -304,11 +362,11 @@ public class EmpresaSlideFragment extends Fragment implements RecyclerViewOnClic
                     break;
 
                 case Constants.ERRO_JSON:
-                    ProblemServerCarrinho(v);
+                    ProblemServerCarro(v);
                     break;
 
                 case Constants.ERRO_INTERNET:
-                    InternetCarrinho(v);
+                    InternetCarro(v);
                     break;
 
                 case Constants.ERRO_APP:
@@ -325,72 +383,96 @@ public class EmpresaSlideFragment extends Fragment implements RecyclerViewOnClic
             }
         }
 
-        private void carregarCarrinho() {
+        private void carregarCaminhoes() {
 
             int[] ids = new int[]{1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25};
 
-            int[] grau = new int[]{2,2,2,1,2,0,0,0,0,2,2,2,1,2,2,2,2,1,2,2,2,2,1,2,2};
+            int[] fotos = new int[]{R.drawable.caminhao,R.drawable.caminhao,R.drawable.caminhao,R.drawable.caminhao,R.drawable.caminhao,R.drawable.caminhao,R.drawable.caminhao,R.drawable.caminhao,R.drawable.caminhao,R.drawable.caminhao,R.drawable.caminhao,R.drawable.caminhao,R.drawable.caminhao,R.drawable.caminhao,R.drawable.caminhao,R.drawable.caminhao,R.drawable.caminhao,R.drawable.caminhao,R.drawable.caminhao,R.drawable.caminhao,R.drawable.caminhao,R.drawable.caminhao,R.drawable.caminhao,R.drawable.caminhao,R.drawable.caminhao};
 
-            int[] fotos = new int[]{R.drawable.usuario,R.drawable.usuario,R.drawable.usuario,R.drawable.usuario,R.drawable.usuario,R.drawable.usuario,R.drawable.usuario,R.drawable.usuario,R.drawable.usuario,R.drawable.usuario,R.drawable.usuario,R.drawable.usuario,R.drawable.usuario,R.drawable.usuario,R.drawable.usuario,R.drawable.usuario,R.drawable.usuario,R.drawable.usuario,R.drawable.usuario,R.drawable.usuario,R.drawable.usuario,R.drawable.usuario,R.drawable.usuario,R.drawable.usuario,R.drawable.usuario};
+            String[] modelo = new String[]{"R440",
+                    "R440",
+                    "R440",
+                    "R440",
+                    "R440",
+                    "R440",
+                    "R440",
+                    "R440",
+                    "R440",
+                    "R440",
+                    "R440",
+                    "R440",
+                    "R440",
+                    "R440",
+                    "R440",
+                    "R440",
+                    "R440",
+                    "R440",
+                    "R440",
+                    "R440",
+                    "R440",
+                    "R440",
+                    "R440",
+                    "R440",
+                    "R440"};
 
-            String[] nome = new String[]{"João",
-                    "Carlos",
-                    "Beto",
-                    "Miguel",
-                    "Samuel",
-                    "notificacao",
-                    "Lucas",
-                    "Alberto",
-                    "Jesus",
-                    "Silva",
-                    "Renato",
-                    "Oswaldo",
-                    "notificacao",
-                    "Renan",
-                    "Marcelo",
-                    "Kleber",
-                    "Ricardo",
-                    "Celso",
-                    "Vitas",
-                    "notificacao",
-                    "Mutley",
-                    "Ana",
-                    "Oséias",
-                    "notificacao",
-                    "Neymar"};
+            String[] marca = new String[]{"SCANIA",
+                    "SCANIA",
+                    "SCANIA",
+                    "SCANIA",
+                    "SCANIA",
+                    "SCANIA",
+                    "SCANIA",
+                    "SCANIA",
+                    "SCANIA",
+                    "SCANIA",
+                    "SCANIA",
+                    "SCANIA",
+                    "SCANIA",
+                    "SCANIA",
+                    "SCANIA",
+                    "SCANIA",
+                    "SCANIA",
+                    "SCANIA",
+                    "SCANIA",
+                    "SCANIA",
+                    "SCANIA",
+                    "SCANIA",
+                    "SCANIA",
+                    "SCANIA",
+                    "SCANIA"};
 
-            String[] descricao = new String[]{"Cliente JOÃO solicitou uma nova carga",
-                    "Motorista CARLOS concluiu entrega",
-                    "Motorista BETO saiu para entrega",
-                    "Administrador MIGUEL atribuiu nova tarefa para você",
-                    "Cliente SAMUEL solicitou uma nova carga",
-                    "Pedido 7123575 em separação",
-                    "Cliente LUCAS solicitou uma nova carga",
-                    "Motorista ALBERTO concluiu entrega",
-                    "Motorista JESUS saiu para entrega",
-                    "Administrador SILVA atribuiu nova tarefa para você",
-                    "Cliente RENATO solicitou uma nova carga",
-                    "Motorista OSWALDO concluiu entrega",
-                    "Pedido 7123575 entregue",
-                    "Motorista RENAN saiu para entrega",
-                    "Administrador MARCELO atribuiu nova tarefa para você",
-                    "Cliente KLEBER solicitou uma nova carga",
-                    "Motorista RICARDO concluiu entrega",
-                    "Motorista CELSO saiu para entrega",
-                    "Administrador VITAS atribuiu nova tarefa para você",
-                    "Pedido 7123542 cancelado",
-                    "Cliente MUTLEY solicitou uma nova carga",
-                    "Motorista ANA concluiu entrega",
-                    "Motorista OSÉIAS saiu para entrega",
-                    "Pedido 7123575 em trânsito",
-                    "Cliente NEYMAR solicitou uma nova carga"};
+            String[] placa = new String[]{"XYZ-4852",
+                    "XYZ-4852",
+                    "XYZ-4852",
+                    "XYZ-4852",
+                    "XYZ-4852",
+                    "XYZ-4852",
+                    "XYZ-4852",
+                    "XYZ-4852",
+                    "XYZ-4852",
+                    "XYZ-4852",
+                    "XYZ-4852",
+                    "XYZ-4852",
+                    "XYZ-4852",
+                    "XYZ-4852",
+                    "XYZ-4852",
+                    "XYZ-4852",
+                    "XYZ-4852",
+                    "XYZ-4852",
+                    "XYZ-4852",
+                    "XYZ-4852",
+                    "XYZ-4852",
+                    "XYZ-4852",
+                    "XYZ-4852",
+                    "XYZ-4852",
+                    "XYZ-4852"};
 
-            mListTarefas = new ArrayList<>();
-            mListTarefasJSON = new ArrayList<>();
+            mListCaminhao = new ArrayList<>();
+            mListCaminhaoJSON = new ArrayList<>();
 
             for (int i = 0; i < ids.length; i++) {
-                Pesquisa p = new Pesquisa(ids[i % ids.length], fotos[i % fotos.length], nome[i % nome.length], descricao[i % descricao.length]);
-                mListTarefasJSON.add(p);
+                Carro c = new Carro(ids[i % ids.length], fotos[i % fotos.length], marca[i % marca.length], modelo[i % modelo.length] , null, placa[i % placa.length], null, 0);
+                mListCaminhaoJSON.add(c);
             }
 
             ativ = Constants.SUCESSO;
@@ -482,7 +564,9 @@ public class EmpresaSlideFragment extends Fragment implements RecyclerViewOnClic
         }
     }
 
-    public void ProblemServerCarrinho(View v) {
+
+
+    public void ProblemServerCarro(View v) {
 
         if (mSwipeRefreshLayout.isRefreshing()) {
             mSwipeRefreshLayout.setRefreshing(false);
@@ -495,7 +579,7 @@ public class EmpresaSlideFragment extends Fragment implements RecyclerViewOnClic
                 (dialog, which) -> {
                     dialog.dismiss();
 
-                    asyncTarefas = new CarregarItensTarefa(v).execute();
+                    asyncCaminhao = new CarregarCaminhoes(v).execute();
 
                 });
         alertDialog.setCancelable(false);
@@ -504,7 +588,7 @@ public class EmpresaSlideFragment extends Fragment implements RecyclerViewOnClic
     }
 
 
-    public void InternetCarrinho(View v) {
+    public void InternetCarro(View v) {
 
         if (mSwipeRefreshLayout.isRefreshing()) {
             mSwipeRefreshLayout.setRefreshing(false);
@@ -516,7 +600,7 @@ public class EmpresaSlideFragment extends Fragment implements RecyclerViewOnClic
         alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, getString(R.string.tentar_novamente),
                 (dialog, which) -> {
                     dialog.dismiss();
-                    asyncTarefas = new CarregarItensTarefa(v).execute();
+                    asyncCaminhao = new CarregarCaminhoes(v).execute();
 
                 });
         alertDialog.setCancelable(true);

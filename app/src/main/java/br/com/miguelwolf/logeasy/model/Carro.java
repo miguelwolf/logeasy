@@ -3,6 +3,7 @@ package br.com.miguelwolf.logeasy.model;
 public class Carro {
 
     private int codigo;
+    private int foto;
     private String marca;
     private String modelo;
     private String cor;
@@ -13,8 +14,9 @@ public class Carro {
     public Carro() {
     }
 
-    public Carro(int codigo, String marca, String modelo, String cor, String placa, String VIN, int ano) {
+    public Carro(int codigo, int foto, String marca, String modelo, String cor, String placa, String VIN, int ano) {
         this.codigo = codigo;
+        this.foto = foto;
         this.marca = marca;
         this.modelo = modelo;
         this.cor = cor;
@@ -29,6 +31,14 @@ public class Carro {
 
     public void setCodigo(int codigo) {
         this.codigo = codigo;
+    }
+
+    public int getFoto() {
+        return foto;
+    }
+
+    public void setFoto(int foto) {
+        this.foto = foto;
     }
 
     public String getMarca() {
