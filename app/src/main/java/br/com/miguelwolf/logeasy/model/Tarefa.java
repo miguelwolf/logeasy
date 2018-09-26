@@ -11,9 +11,9 @@ public class Tarefa {
     private Pessoa requisitado;
     private String descricao;
 
+
     public Tarefa() {
     }
-
 
 
     public Tarefa(int codigo, int grauVisibilidade, boolean visualizado, boolean ativo, Pessoa requerente, Pessoa requisitado, String descricao) {
