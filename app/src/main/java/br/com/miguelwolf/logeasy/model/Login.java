@@ -2,31 +2,31 @@ package br.com.miguelwolf.logeasy.model;
 
 public class Login extends Pessoa{
 
-    private int codigo;
+    private String codigo;
     private String usuario;
     private String senha;
 
     public Login(){
     }
 
-    public Login(int codigo, String usuario, String senha) {
+    public Login(String codigo, String usuario, String senha) {
         this.codigo = codigo;
         this.usuario = usuario;
         this.senha = senha;
     }
 
-    public Login(int codigo, String nome, String cpfCnpj, String email, boolean ativo, int tipo, int codigo1, String usuario, String senha) {
+    public Login(String codigo, String nome, String cpfCnpj, String email, boolean ativo, int tipo, String codigo1, String usuario, String senha) {
         super(codigo, nome, cpfCnpj, email, ativo, tipo);
         this.codigo = codigo1;
         this.usuario = usuario;
         this.senha = senha;
     }
 
-    public int getCodigo() {
+    public String getCodigo() {
         return codigo;
     }
 
-    public void setCodigo(int codigo) {
+    public void setCodigo(String codigo) {
         this.codigo = codigo;
     }
 

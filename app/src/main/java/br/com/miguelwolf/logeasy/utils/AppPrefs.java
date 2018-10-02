@@ -35,7 +35,8 @@ public class AppPrefs {
 
 
     //Infomações Login
-    private String nome, id, tipoPessoa;
+    private String nome, id;
+    private int tipoPessoa;
 
 
     public String getId() {
@@ -60,12 +61,12 @@ public class AppPrefs {
 
 
 
-    public String getTipoPessoa() {
-        return prefs.getString(Constants.LOGIN_TIPO_PESSOA, tipoPessoa);
+    public int getTipoPessoa() {
+        return prefs.getInt(Constants.LOGIN_TIPO_PESSOA, tipoPessoa);
     }
 
-    public void setTipoPessoa(String tipoPessoa) {
-        editor.putString(Constants.LOGIN_TIPO_PESSOA, tipoPessoa);
+    public void setTipoPessoa(int tipoPessoa) {
+        editor.putInt(Constants.LOGIN_TIPO_PESSOA, tipoPessoa);
         editor.commit();
     }
 
@@ -77,7 +78,8 @@ public class AppPrefs {
 
         setId(null);
         setNome(null);
-        setTipoPessoa(null);
+
+        setTipoPessoa(0);
 
         Intent intent = new Intent(Actx, LoginActivity.class);
         Actx.startActivity(intent);

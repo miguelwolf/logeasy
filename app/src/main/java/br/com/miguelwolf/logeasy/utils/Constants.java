@@ -8,9 +8,17 @@ public class Constants {
     public static final int ERRO_JSON = 25;
     public static final int ERRO_INTERNET = 9;
 
+    public static final int CLIENTE = 1;
+    public static final int CAMINHONEIRO = 2;
+    public static final int ADMINISTRADOR = 3;
+    public static final int EMPRESA = 99;
+
+
     public static final String LOGIN_NOME = "login_nome";
     public static final String LOGIN_ID = "login_id";
     public static final String LOGIN_TIPO_PESSOA = "login_tipo_pessoa";
+
+
 
 
 }

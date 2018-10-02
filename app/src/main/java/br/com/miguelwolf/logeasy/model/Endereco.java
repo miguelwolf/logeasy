@@ -2,7 +2,7 @@ package br.com.miguelwolf.logeasy.model;
 
 public class Endereco {
 
-    private int codigo;
+    private String codigo;
     private String endereco;
     private int numero;
     private String bairro;
@@ -15,7 +15,7 @@ public class Endereco {
     public Endereco() {
     }
 
-    public Endereco(int codigo, String endereco, int numero, String bairro, String complemento, String logradouro, String cidade, String uf, String cep) {
+    public Endereco(String codigo, String endereco, int numero, String bairro, String complemento, String logradouro, String cidade, String uf, String cep) {
         this.codigo = codigo;
         this.endereco = endereco;
         this.numero = numero;
@@ -27,11 +27,11 @@ public class Endereco {
         this.cep = cep;
     }
 
-    public int getCodigo() {
+    public String getCodigo() {
         return codigo;
     }
 
-    public void setCodigo(int codigo) {
+    public void setCodigo(String codigo) {
         this.codigo = codigo;
     }
 

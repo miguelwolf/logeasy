@@ -21,26 +21,19 @@ import com.squareup.picasso.Picasso;
 
 import br.com.miguelwolf.logeasy.DAO.PessoaDAO;
 import br.com.miguelwolf.logeasy.R;
+import br.com.miguelwolf.logeasy.utils.AppPrefs;
 import br.com.miguelwolf.logeasy.utils.CircleTransform;
+import br.com.miguelwolf.logeasy.utils.Constants;
 import br.com.miguelwolf.logeasy.utils.Preferences;
 import br.com.miguelwolf.logeasy.model.Pessoa;
 
 import static android.content.Context.MODE_PRIVATE;
 
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link PerfilFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link PerfilFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class PerfilFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+
+    private AppPrefs session;
 
     private ImageView ivPerfil;
     private ImageView ivCarro;
@@ -65,20 +58,10 @@ public class PerfilFragment extends Fragment {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment PerfilFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static PerfilFragment newInstance(String param1, String param2) {
+
+    public static PerfilFragment newInstance() {
         PerfilFragment fragment = new PerfilFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
     }
@@ -86,9 +69,10 @@ public class PerfilFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        session = new AppPrefs(getActivity());
+
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
 
@@ -168,19 +152,14 @@ public class PerfilFragment extends Fragment {
         pessoa = new Pessoa();
         pessoaDAO = new PessoaDAO();
 
-        pessoa.setCodigo(0);
+        pessoa.setCodigo("0");
 
-        SharedPreferences preferences =
-                getActivity().getSharedPreferences(Preferences.PREFERENCIA, MODE_PRIVATE);
 
-        if (preferences.contains(Preferences.ID_PESSOA)) {
-            if (preferences.getInt(Preferences.ID_PESSOA, 0) == pessoa.getCodigo()) {
-                btnEditarPerfil.setVisibility(View.VISIBLE);
-            } else {
-                btnEditarPerfil.setVisibility(View.GONE);
-            }
+
+        if (session.getId().equals(pessoa.getCodigo())) {
+            btnEditarPerfil.setVisibility(View.VISIBLE);
         } else {
-            getActivity().finish();
+            btnEditarPerfil.setVisibility(View.GONE);
         }
 
         btnAtribuirPermissao.setVisibility(View.GONE);
@@ -188,30 +167,25 @@ public class PerfilFragment extends Fragment {
         rlDados.setVisibility(View.GONE);
 
 
-        if (preferences.contains(Preferences.TIPO_PESSOA)) {
 
-            if (preferences.getInt(Preferences.TIPO_PESSOA, 0) == Pessoa.COMUM && preferences.getInt(Preferences.ID_PESSOA, 0) != pessoa.getCodigo()) {
-                rlDados.setVisibility(View.INVISIBLE);
+        if (session.getTipoPessoa() == Constants.CLIENTE && !session.getId().equals(pessoa.getCodigo())) {
+            rlDados.setVisibility(View.INVISIBLE);
 
-            } else if (preferences.getInt(Preferences.TIPO_PESSOA, 0) == Pessoa.COMUM && preferences.getInt(Preferences.ID_PESSOA, 0) == pessoa.getCodigo()) {
-                rlDados.setVisibility(View.VISIBLE);
+        } else if (session.getTipoPessoa() == Constants.CLIENTE && !session.getId().equals(pessoa.getCodigo())) {
+            rlDados.setVisibility(View.VISIBLE);
 
-            } else if (preferences.getInt(Preferences.TIPO_PESSOA, 0) == Pessoa.CAMINHONEIRO && pessoa.getTipo() != Pessoa.ADMINISTRADOR) {
-                rlDados.setVisibility(View.VISIBLE);
-                Picasso.get().load(R.drawable.caminhao).into(ivCarro);
+        } else if (session.getTipoPessoa() == Constants.CAMINHONEIRO && pessoa.getTipo() != Constants.ADMINISTRADOR) {
+            rlDados.setVisibility(View.VISIBLE);
+            Picasso.get().load(R.drawable.caminhao).into(ivCarro);
 
-            } else if (preferences.getInt(Preferences.TIPO_PESSOA, 0) == Pessoa.CAMINHONEIRO && pessoa.getTipo() == Pessoa.ADMINISTRADOR) {
-                Picasso.get().load(R.drawable.caminhao).into(ivCarro);
+        } else if (session.getTipoPessoa() == Constants.CAMINHONEIRO && pessoa.getTipo() == Constants.ADMINISTRADOR) {
+            Picasso.get().load(R.drawable.caminhao).into(ivCarro);
 
-            } else if (preferences.getInt(Preferences.TIPO_PESSOA, 0) == Pessoa.ADMINISTRADOR) {
-                rlDados.setVisibility(View.VISIBLE);
-                btnAtribuirCarro.setVisibility(View.VISIBLE);
-                btnAtribuirPermissao.setVisibility(View.VISIBLE);
-                Picasso.get().load(R.drawable.caminhao).into(ivCarro);
-
-            } else {
-                getActivity().finish();
-            }
+        } else if (session.getTipoPessoa() == Constants.ADMINISTRADOR) {
+            rlDados.setVisibility(View.VISIBLE);
+            btnAtribuirCarro.setVisibility(View.VISIBLE);
+            btnAtribuirPermissao.setVisibility(View.VISIBLE);
+            Picasso.get().load(R.drawable.caminhao).into(ivCarro);
 
         } else {
             getActivity().finish();
