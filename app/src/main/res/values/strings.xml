@@ -71,6 +71,8 @@
     <string name="pendente">Pendente</string>
     <string name="historico">Histórico</string>
     <string name="sem_tarefas">Não há tarefas</string>
+    <string name="requerente">Requerente</string>
+    <string name="requisitado">Requisitado</string>
 
     <!--Carro-->
     <string name="sem_caminhoneiro">Não há caminhoneiros</string>
