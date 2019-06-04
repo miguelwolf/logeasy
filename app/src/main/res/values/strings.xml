@@ -12,6 +12,7 @@
     <string name="personalizacao">Personalização</string>
     <string name="noite">Noite</string>
     <string name="sair">Sair</string>
+    <string name="entrar">Entrar</string>
 
     <string name="solicitou_nova_entrega">solicitou nova entrega</string>
     <string name="recebeu_entrega">recebeu entrega</string>
