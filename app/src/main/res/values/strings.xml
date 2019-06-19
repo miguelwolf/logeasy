@@ -15,7 +15,7 @@
 
     <string name="solicitou_nova_entrega">solicitou nova entrega</string>
     <string name="recebeu_entrega">recebeu entrega</string>
-    <string name="saiu_para_entrega">saiu para entrega</string>
+    <string name="saiu_para_entrega"> saiu para entrega</string>
     <string name="teve_carga_saqueada">teve carga saqueada</string>
     <string name="concluiu_entrega">concluiu entrega</string>
     <string name="adicionou_nova_entrega">adicionou uma nova entrega para você</string>
